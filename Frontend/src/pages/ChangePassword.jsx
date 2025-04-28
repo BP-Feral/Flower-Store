@@ -7,6 +7,7 @@ function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const username = localStorage.getItem("username");
 
   const validatePassword = (password) => {
     const errors = {};
@@ -34,8 +35,13 @@ function ChangePassword() {
 
     const response = await fetch("http://localhost:5000/change-password", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ new_password: newPassword }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username, // 👈 Send username too
+        new_password: newPassword,
+      }),
     });
 
     const data = await response.json();

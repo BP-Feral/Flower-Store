@@ -1,74 +1,112 @@
-@import url("./commonStyles.css");
-
-.card {
-  background: #151515;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 1000px;
-  min-width: 800px;
-}
-
-.table {
-  width: 100%;
-  margin-top: 2rem;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 0.75rem;
-  border-bottom: 1px solid #ccc;
-  text-align: left;
-}
-
-pre {
-  font-size: 0.8rem;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.createButton {
-  background-color: #10b981;
-  color: white;
-  border: none;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-top: 2rem;
-}
-
-.createButton:hover {
-  background-color: #059669;
-}
-
-.createForm {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.permissionsBox {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  background-color: #252525;
-  padding: 0.5rem;
-  border-radius: 6px;
-}
-
-.deleteButton {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.deleteButton:hover {
-  background-color: #dc2626;
-}
+.pageWrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .card {
+    background: #151515;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  }
+  
+  .heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .table tr {
+    border-bottom: 1px solid #4b5563;
+  }
+  
+  .table th, .table td {
+    text-align: left;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .idColumn {
+    width: 80px;
+  }
+  
+  .usernameColumn {
+    width: 200px;
+  }
+  
+  .input {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 0.5rem;
+    padding: 0.4rem;
+    border-radius: 6px;
+    outline: none;
+    font-size: 0.9rem;
+    border: 1px solid #10b981;
+    box-sizing: border-box;
+  }
+  
+  .input:focus {
+    border: 1px solid #10b981;
+  }
+  
+  .button, .editButton, .createButton, .deleteButton, .resetButton {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+  
+  .createButton, .editButton {
+    background-color: #10b981;
+    color: white;
+  }
+  
+  .deleteButton, .resetButton {
+    background-color: #9b2e2e;
+    color: white;
+  }
+  
+  .createButton:hover, .editButton:hover {
+    background-color: #059669;
+  }
+  
+  .deleteButton:hover, .resetButton:hover {
+    background-color: #ef4444;
+  }
+  
+  .adminRow {
+    border-bottom: 2px solid #4b5563;
+  }
+  
+  .permissionsDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 450px;
+  }
+  
+  .permissionItem {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+  }
+  

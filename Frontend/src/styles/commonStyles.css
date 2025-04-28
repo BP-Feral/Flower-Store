@@ -1,69 +1,69 @@
 .pageWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 70px); /* FIX: height minus Navbar */
-    width: 100%;
-    background-color: transparent;
-  }
-  
-  
-  
-  .card {
-    background: #151515;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* stronger darker shadow */
-    width: 100%;
-    max-width: 400px;
-  }  
-  
-  .heading {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #f9fafb;
-    color: #111827;
-    font-size: 1rem;
-    box-sizing: border-box; /* NEW! */
-  }
-  
-  
-  .button {
-    width: 100%;
-    padding: 0.75rem;
-    margin-top: 1rem;
-    background-color: #10b981;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px); /* FIX: height minus Navbar */
+  width: 100%;
+  background-color: transparent;
+}
 
-  .button:hover {
-    background-color: #059669;
-  }
-  
-  .buttonDisabled {
-    background-color: #9ca3af;
-    cursor: not-allowed;
-  }
-  
-  .error {
-    color: red;
-    text-align: center;
-    margin-top: 1rem;
-  }
-  
-  .requirements {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
-  
+.card {
+  background: #151515;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* stronger darker shadow */
+  width: 100%;
+  max-width: 400px;
+}  
+
+.heading {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid #10b981;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box; /* NEW! */
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid #10b981; /* Green border on focus */
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #059669;
+}
+
+.buttonDisabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.requirements {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
