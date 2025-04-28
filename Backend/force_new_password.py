@@ -9,4 +9,4 @@ c.execute('UPDATE users SET force_password_change = 1 WHERE username = ?', ("adm
 conn.commit()
 conn.close()
 
-print("✅ Admin account reset: Force password change ON.")
+print("✅ Admin account reset: Force new password change ON.")
