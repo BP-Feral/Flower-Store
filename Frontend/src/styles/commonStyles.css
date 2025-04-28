@@ -2,10 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: calc(100vh - 70px); /* FIX: height minus Navbar */
     width: 100%;
-    background-color: transparent; /* or no background here */
+    background-color: transparent;
   }
+  
   
   
   .card {
@@ -44,6 +45,10 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #059669;
   }
   
   .buttonDisabled {

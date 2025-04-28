@@ -11,31 +11,48 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const response = await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("forcePasswordChange", data.force_password_change);
-
-      if (data.force_password_change) {
-        showSuccess("First login detected! Please set a strong new password.");
-        navigate("/change-password");
+  
+    try {
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+  
+      const data = await response.json(); // Always read the response JSON
+  
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("forcePasswordChange", data.force_password_change);
+        localStorage.setItem("permissions", JSON.stringify(data.permissions));
+        localStorage.setItem("username", data.username);
+  
+        if (data.force_password_change) {
+          showSuccess("First login detected! Please set a strong new password.");
+          navigate("/change-password");
+        } else {
+          if (data.username === "admin") {
+            showSuccess("Welcome Admin!");
+            navigate("/admin");
+          } else {
+            showSuccess("Login successful!");
+            navigate("/");
+          }
+        }
       } else {
-        showSuccess("Login successful!");
-        navigate("/admin");
+        showError(data.error || "Login failed. Please check your credentials.");
       }
-    } else {
-      showError(data.error || "Login failed!");
-      setError(data.error || "Login failed");
+    } catch (error) {
+      console.error("Login error:", error);
+      showError("Login failed due to server error.");
     }
   };
+  
 
   return (
     <div className={styles.pageWrapper}>
