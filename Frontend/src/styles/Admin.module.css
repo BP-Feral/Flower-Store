@@ -50,12 +50,14 @@
     width: 100%;
     max-width: 250px;
     margin-bottom: 0.5rem;
+    margin-right: 10px;
     padding: 0.4rem;
     border-radius: 6px;
     outline: none;
     font-size: 0.9rem;
     border: 1px solid #10b981;
     box-sizing: border-box;
+    font-family: 'NotoKR', sans-serif;
   }
   
   .input:focus {
@@ -75,6 +77,7 @@
   }
   
   .createButton, .editButton {
+    margin-top: 10px;
     background-color: #10b981;
     color: white;
   }
@@ -121,6 +124,7 @@
   .permissionItem {
     display: flex;
     align-items: center;
+    margin-right: 10px;
     gap: 0.3rem;
     font-size: 0.85rem;
   }

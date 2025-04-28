@@ -393,7 +393,7 @@ function Admin() {
           />
 
           <div className={styles.permissionsBox}>
-            <label>
+            <label className={styles.permissionItem}>
               <input
                 type="checkbox"
                 name="add_products"
@@ -402,7 +402,7 @@ function Admin() {
               />
               Add Products
             </label>
-            <label>
+            <label className={styles.permissionItem}>
               <input
                 type="checkbox"
                 name="edit_products"
@@ -411,7 +411,7 @@ function Admin() {
               />
               Edit Products
             </label>
-            <label>
+            <label className={styles.permissionItem}>
               <input
                 type="checkbox"
                 name="delete_products"
@@ -420,7 +420,7 @@ function Admin() {
               />
               Delete Products
             </label>
-            <label>
+            <label className={styles.permissionItem}>
               <input
                 type="checkbox"
                 name="manage_users"
@@ -431,10 +431,29 @@ function Admin() {
             </label>
           </div>
 
+          <div>
           <button type="submit" className={styles.createButton}>
             Save User
           </button>
-        </form>
+          <button
+            type="button"
+            onClick={() => {
+              setShowCreateForm(false); 
+              setNewUsername("");
+              setNewPassword("");
+              setPermissions({
+                add_products: false,
+                edit_products: false,
+                delete_products: false,
+                manage_users: false,
+              });
+            }}
+            className={styles.deleteButton}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
         )}
       {/* Reset Password Form */}
       {resetUser && (
