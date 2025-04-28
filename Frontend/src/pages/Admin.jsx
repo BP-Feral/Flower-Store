@@ -472,7 +472,7 @@ function Admin() {
 
     {/* Logout Button */}
     <div className={styles.card}>
-      <button onClick={handleLogout} className={styles.button}>
+      <button onClick={handleLogout} className={styles.logoutButton}>
         Logout
       </button>
     </div>
