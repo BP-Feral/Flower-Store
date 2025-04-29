@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import ManageProducts from "./pages/ManageProducts";
 import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   return (
     <AuthProvider>
