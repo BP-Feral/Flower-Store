@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { showError, showSuccess } from "../utils/toast";
+import { showError, showSuccess } from "../utils/toast.jsx";
 
 import styles from "../styles/Admin.module.css";
 
@@ -31,6 +31,10 @@ function AdminPanel() {
     add_product: false,
     edit_product: false,
     delete_product: false,
+    view_tags: false,
+    create_tags: false,
+    delete_tags: false,
+    edit_tags: false,
   });
   
   const [editUsername, setEditUsername] = useState("");
@@ -38,7 +42,10 @@ function AdminPanel() {
     add_product: false,
     edit_product: false,
     delete_product: false,
-    manage_users: false,
+    view_tags: false,
+    create_tags: false,
+    delete_tags: false,
+    edit_tags:false,
   });
   const [resetPassword, setResetPassword] = useState("");
 
@@ -62,15 +69,38 @@ function AdminPanel() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/users");
+      const token = localStorage.getItem("token");
+  
+      const response = await fetch("http://localhost:5000/users", {
+        method: "GET",
+        headers: {
+          "Authorization": token,
+        },
+      });
+  
+      if (response.status === 401 || response.status === 403) {
+        // Token invalid or expired
+        showError("Session expired. Please login again.");
+        localStorage.clear();
+        setUser(null);
+        navigate("/login");
+        return;
+      }
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch users");
+      }
+  
       const data = await response.json();
       setUsers(data);
     } catch (error) {
       console.error("Failed to fetch users:", error);
       showError("Failed to load users!");
+      setUsers([]);
     }
   };
-
+  
+  
   if (isLoading) {
     return <div style={{ textAlign: "center", marginTop: "2rem", color: "white" }}>Loading...</div>;
   }

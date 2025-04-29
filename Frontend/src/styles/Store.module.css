@@ -1,0 +1,33 @@
+.pageWrapper {
+    padding: 2rem;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #10b981;
+  }
+  
+  .productGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .productCard {
+    background: #151515;
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+  }
+  
+  .productImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+  

@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { showSuccess, showError } from "../utils/toast";
+import { showSuccess, showError } from "../utils/toast.jsx";
 import { AuthContext } from "../contexts/AuthContext"; // use context
 import styles from "../styles/Login.module.css";
 

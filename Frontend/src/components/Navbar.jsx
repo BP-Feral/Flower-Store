@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import styles from "../styles/Navbar.module.css";
-import { showSuccess } from "../utils/toast";
+import { showSuccess } from "../utils/toast.jsx";
 
 function Navbar() {
   const { user } = useContext(AuthContext);

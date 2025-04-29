@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { showSuccess, showError } from "../utils/toast";
+import { showSuccess, showError } from "../utils/toast.jsx";
 import styles from "../styles/ChangePassword.module.css";
 
 function ChangePassword() {

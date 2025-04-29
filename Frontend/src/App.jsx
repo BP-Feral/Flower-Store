@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import ManageProducts from "./pages/ManageProducts";
 import ScrollToTop from "./components/ScrollToTop";
+import Store from "./pages/Store";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Toaster position="bottom-center" reverseOrder={false} /> {/* Toast provider */}
         <Routes>
           <Route path="/" element={<h1>Public Storefront</h1>} />
-          <Route path="/store" element={<h1>Public Products Store</h1>} />
+          <Route path="/store" element={<Store />} />
           <Route path="/about" element={<h1>About This Project</h1>} />
           <Route path="/login" element={<Login />} />
           <Route path="/change-password" element={<ChangePassword />} />
