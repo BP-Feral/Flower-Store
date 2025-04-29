@@ -3,6 +3,7 @@ from flask_cors import CORS
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlite3 import IntegrityError
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -23,11 +24,16 @@ def login():
     conn.close()
 
     if user and check_password_hash(user["password_hash"], password):
-        # login success
+        # Parse permissions string into a real Python dict
+        try:
+            permissions = json.loads(user["permissions"])
+        except json.JSONDecodeError:
+            permissions = {}
+
         return jsonify({
             "token": "dummy-token",
             "force_password_change": user["force_password_change"],
-            "permissions": user["permissions"],
+            "permissions": permissions,  # real dict now
             "username": user["username"]
         })
     else:

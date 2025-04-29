@@ -26,10 +26,10 @@ VALUES (?, ?, ?, ?)
     "admin",
     generate_password_hash("admin"),  # Default password
     json.dumps({
-        "can_add_product": True,
-        "can_edit_product": True,
-        "can_delete_product": True,
-        "can_manage_users": True
+        "add_product": True,
+        "edit_product": True,
+        "delete_product": True,
+        "manage_users": True
     }),
     True
 ))
