@@ -29,10 +29,44 @@ VALUES (?, ?, ?, ?)
         "add_product": True,
         "edit_product": True,
         "delete_product": True,
-        "manage_users": True
+        "view_tags": True,
+        "create_tags": True,
+        "delete_tags": True,
+        "edit_tags": True,
+        "manage_users": True,
     }),
     True
 ))
+
+c.execute('''
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  description TEXT,
+  stock INTEGER DEFAULT 0,
+  price REAL DEFAULT 0,
+  image_url TEXT,
+  tags TEXT -- JSON array of tag IDs
+)
+'''
+)
+
+c.execute('''
+CREATE TABLE tags (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT UNIQUE NOT NULL
+)'''
+)
+
+c.execute('''
+CREATE TABLE product_tags (
+  product_id INTEGER NOT NULL,
+  tag_id INTEGER NOT NULL,
+  PRIMARY KEY (product_id, tag_id),
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+  FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+)'''
+)
 
 conn.commit()
 conn.close()
