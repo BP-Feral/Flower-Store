@@ -1,11 +1,17 @@
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #151515;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #151515;
-  color: white;
-  height: 35px;
+  padding: 0 10px;
+  overflow-x: hidden;
+  z-index: 999;
 }
 
 .logo a {
@@ -18,7 +24,10 @@
 .navLinks {
   display: flex;
   gap: 1.5rem;
+  flex-shrink: 1; /* allow nav links to shrink if needed */
+  min-width: 0; /* critical to prevent overflow */
 }
+
 
 .navLinks a {
   text-decoration: none;
@@ -32,9 +41,9 @@
 }
 
 .userSection {
-  position: relative;
   display: flex;
   align-items: center;
+  flex-shrink: 0; /* do not shrink user section */
 }
 
 .loginButton {
@@ -60,8 +69,9 @@
 .profile {
   display: flex;
   align-items: center;
-  cursor: pointer;
   position: relative;
+  min-width: 0;
+  cursor: pointer;
 }
 
 .avatar {
@@ -69,38 +79,45 @@
   height: 32px;
   border-radius: 50%;
   background-color: #ccc;
-  margin-right: 0.5rem;
+  margin-right: 0.2rem;
+  margin-left: 0.5rem;
 }
 
 .username {
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }
-
 .dropdown {
-  position: absolute;
-  top: 120%;
-  right: 0;
-  background-color: #374151;
-  padding: 0.5rem;
-  border-radius: 8px;
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: #151515;
+  padding: 0.5rem 0;
+  border-radius: 0;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   min-width: 150px;
+  z-index: 2000;
 }
 
-.dropdown a, .dropdownButton {
-  padding: 0.5rem 1rem;
+.dropdown a,
+.dropdownButton {
+  all: unset;
+  padding: 0.75rem 1rem;
   text-decoration: none;
   color: white;
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
-.dropdown a:hover, .dropdownButton:hover {
-  color: #10b981;
-  background: none;
+.dropdown a:hover,
+.dropdownButton:hover {
+  background: #252525;
 }

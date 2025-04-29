@@ -38,17 +38,28 @@ function Navbar() {
       <div className={styles.userSection}>
         {user ? (
           <div className={styles.profile} onClick={toggleDropdown}>
-            <div className={styles.avatar}></div>
             <span className={styles.username}>{user.username}</span>
+            <div className={styles.avatar}></div>
+            
             {showDropdown && (
               <div className={styles.dropdown}>
-                <Link to="/profile">Item 1</Link>
-                <Link to="/settings">Item 2</Link>
+                <Link to="/profile">Profile</Link>
+                <Link to="/settings">Settings</Link>
+
+                {(user.permissions?.add_product || user.permissions?.edit_product || user.permissions?.delete_product) && (
+                  <Link to="/manage-products">Manage Products</Link>
+                )}
+
+                {user.username === "admin" && (
+                  <Link to="/admin">Admin Panel</Link>
+                )}
+
                 <button onClick={handleLogout} className={styles.dropdownButton}>
                   Logout
                 </button>
               </div>
             )}
+
           </div>
         ) : (
           <button onClick={() => navigate("/login")} className={styles.loginButton}>
