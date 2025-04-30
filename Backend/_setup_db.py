@@ -2,6 +2,9 @@ import sqlite3
 import json
 from werkzeug.security import generate_password_hash
 
+
+admin_avatar = "static/images/admin.png"
+
 # Create/connect to database
 conn = sqlite3.connect('database.db')
 c = conn.cursor()
@@ -18,13 +21,14 @@ CREATE TABLE users (
 )
 ''')
 
-# Insert default admin user
+# Insert default admin user with avatar
 c.execute('''
-INSERT INTO users (username, password_hash, permissions, force_password_change)
-VALUES (?, ?, ?, ?)
+INSERT INTO users (username, password_hash, profile_picture, permissions, force_password_change)
+VALUES (?, ?, ?, ?, ?)
 ''', (
     "admin",
     generate_password_hash("admin"),  # Default password
+    admin_avatar,
     json.dumps({
         "add_product": True,
         "edit_product": True,
@@ -34,9 +38,11 @@ VALUES (?, ?, ?, ?)
         "delete_tags": True,
         "edit_tags": True,
         "manage_users": True,
+        "view_cameras": True
     }),
     True
 ))
+
 
 c.execute('''
 CREATE TABLE products (
@@ -65,6 +71,27 @@ CREATE TABLE product_tags (
   PRIMARY KEY (product_id, tag_id),
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
   FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+)'''
+)
+
+c.execute('''
+CREATE TABLE cameras (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  rtsp_url TEXT NOT NULL,
+  is_enabled BOOLEAN DEFAULT 1
+)'''
+)
+
+c.execute('''
+CREATE TABLE settings (
+  key TEXT PRIMARY KEY,
+  value TEXT
+)'''
+)
+
+c.execute('''
+INSERT INTO settings (key, value) VALUES ('camera_enabled', '1'\
 )'''
 )
 
