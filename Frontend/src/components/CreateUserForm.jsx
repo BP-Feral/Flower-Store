@@ -1,4 +1,5 @@
-import styles from "../styles/Admin.module.css";
+import "../styles/FormControlsLayout.css";
+import "../styles/UserTableLayout.css";
 
 function CreateUserForm({
   createUserRef,
@@ -12,7 +13,7 @@ function CreateUserForm({
   onCancel,
 }) {
   return (
-    <form onSubmit={onSubmit} className={styles.createForm}>
+    <form onSubmit={onSubmit}>
       <h3>Create New User</h3>
       <input
         type="text"
@@ -20,40 +21,44 @@ function CreateUserForm({
         placeholder="Username"
         value={newUsername}
         onChange={(e) => onChangeUsername(e.target.value)}
-        className={styles.input}
-        required
+        className="input"
       />
       <input
         type="password"
         placeholder="Password"
         value={newUserPassword}
         onChange={(e) => onChangePassword(e.target.value)}
-        className={styles.input}
-        required
+        className="input"
       />
-      <div className={styles.permissionsDisplay}>
-      {[
-        "add_product",
-        "edit_product",
-        "delete_product",
-        "view_tags",
-        "create_tags",
-        "delete_tags",
-        "edit_tags",
+      <div className="permissionsDisplay">
+        {[
+          "add_product",
+          "edit_product",
+          "delete_product",
+          "view_tags",
+          "create_tags",
+          "delete_tags",
+          "edit_tags",
+          "view_cameras"
         ].map((perm) => (
-        <label key={perm} className={styles.permissionItem}>
+          <label
+              key={perm}
+              className={
+                perm === "view_cameras" ? "permissionItem manageUsersPermission" : "permissionItem"
+              }
+            >
             <input
-            type="checkbox"
-            name={perm}
-            checked={permissions[perm]}
-            onChange={onPermissionChange}
+              type="checkbox"
+              name={perm}
+              checked={permissions[perm]}
+              onChange={onPermissionChange}
             />
             {perm.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
-        </label>
+          </label>
         ))}
-</div>
-      <button type="submit" className={styles.createButton}>Save User</button>
-      <button type="button" onClick={onCancel} className={styles.deleteButton}>Cancel</button>
+      </div>
+      <button type="submit" className="createButton">Save User</button>
+      <button type="button" onClick={onCancel} className="deleteButton">Cancel</button>
     </form>
   );
 }

@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showSuccess, showError } from "../utils/toast.jsx";
 import ConfirmModal from "../components/ConfirmModals.jsx";
-import styles from "../styles/Admin.module.css";
+
+import "../styles/AdminLayout.css";
+import "../styles/FormControlsLayout.css";
+import "../styles/UserTableLayout.css";
 
 
 function ManageProducts() {
@@ -186,21 +189,21 @@ function ManageProducts() {
   };
 
   return (
-    <div className={styles.pageWrapper}>
-      <h2 className={styles.heading}>Manage Products</h2>
+    <div className="pageWrapper">
+      <h2 className="heading">Manage Products</h2>
 
       {/* Tags Section */}
       {canViewTags && (
-        <div className={styles.card}>
-          <h3 className={styles.heading}>Tags / Categories</h3>
+        <div className="card">
+          <h3 className="heading">Tags / Categories</h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }}>
             {tags.map((tag) => (
-              <div key={tag.id} className={styles.permissionItem}>
+              <div key={tag.id} className="permissionItem">
                 {tag.name}
                 {canDeleteTags && (
                   <button
                     onClick={() => handleRequestDeleteTag(tag.id)}
-                    className={styles.deleteButton}
+                    className="deleteButton"
                   >
                     Delete
                   </button>
@@ -216,9 +219,9 @@ function ManageProducts() {
                 placeholder="New Tag Name"
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
-                className={styles.input}
+                className="input"
               />
-              <button type="submit" className={styles.createButton}>Create Tag</button>
+              <button type="submit" className="createButton">Create Tag</button>
             </form>
           )}
         </div>
@@ -226,8 +229,8 @@ function ManageProducts() {
 
       {/* Create Product Section */}
       {canAddProduct && (
-        <div className={styles.card}>
-          <h3 className={styles.heading}>Create New Product</h3>
+        <div className="card">
+          <h3 className="heading">Create New Product</h3>
           <form onSubmit={handleCreateProduct} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <input
               type="text"
@@ -235,14 +238,14 @@ function ManageProducts() {
               placeholder="Product Name"
               value={newProduct.name}
               onChange={handleProductInputChange}
-              className={styles.input}
+              className="input"
             />
             <textarea
               name="description"
               placeholder="Product Description"
               value={newProduct.description}
               onChange={handleProductInputChange}
-              className={styles.input}
+              className="input"
               rows="3"
             />
             <input
@@ -251,7 +254,7 @@ function ManageProducts() {
               placeholder="Stock Available"
               value={newProduct.stock}
               onChange={handleProductInputChange}
-              className={styles.input}
+              className="input"
             />
             <input
               type="number"
@@ -259,18 +262,18 @@ function ManageProducts() {
               placeholder="Price Per Item ($)"
               value={newProduct.price}
               onChange={handleProductInputChange}
-              className={styles.input}
+              className="input"
             />
             <input
               type="file"
               accept="image/*"
               onChange={handleImageChange}
-              className={styles.input}
+              className="input"
             />
 
-            <div className={styles.permissionsDisplay}>
+            <div className="permissionsDisplay">
               {tags.map((tag) => (
-                <label key={tag.id} className={styles.permissionItem}>
+                <label key={tag.id} className="permissionItem">
                   <input
                     type="checkbox"
                     value={tag.id}
@@ -282,7 +285,7 @@ function ManageProducts() {
               ))}
             </div>
 
-            <button type="submit" className={styles.createButton}>Create Product</button>
+            <button type="submit" className="createButton">Create Product</button>
           </form>
         </div>
       )}

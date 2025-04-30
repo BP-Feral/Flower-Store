@@ -9,6 +9,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ManageProducts from "./pages/ManageProducts";
 import ScrollToTop from "./components/ScrollToTop";
 import Store from "./pages/Store";
+import CameraFeed from "./pages/CameraFeed";
+
 
 function App() {
   return (
@@ -23,6 +25,14 @@ function App() {
           <Route path="/about" element={<h1>About This Project</h1>} />
           <Route path="/login" element={<Login />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route
+            path="/cameras"
+            element={
+              <ProtectedRoute requiredPermission="view_cameras">
+                <CameraFeed />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/manage-products"
             element={

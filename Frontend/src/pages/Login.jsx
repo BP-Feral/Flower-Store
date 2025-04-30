@@ -46,15 +46,16 @@ function Login() {
         setUser({ username: data.username, permissions: data.permissions });
   
         if (data.force_password_change) {
-          showSuccess("First login detected! Please set a strong new password.");
-          navigate("/change-password");
+          sessionStorage.setItem("postReloadToast", "First login detected! Please set a strong new password.");
+          window.location.href = "/change-password";
         } else if (data.username === "admin") {
-          showSuccess("Welcome Admin!");
-          navigate("/admin");
+          sessionStorage.setItem("postReloadToast", "Welcome Admin!");
+          window.location.href = "/admin";
         } else {
-          showSuccess("Login successful!");
-          navigate("/");
+          sessionStorage.setItem("postReloadToast", "Login successful!");
+          window.location.href = "/";
         }
+
       } else {
         showError(data.error || "Login failed. Please check your credentials.");
       }

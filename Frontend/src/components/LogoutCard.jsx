@@ -1,9 +1,10 @@
-import styles from "../styles/Admin.module.css";
+import "../styles/AdminLayout.css";
+import "../styles/LogoutCardLayout.css";
 
 function LogoutCard({ onLogout }) {
   return (
-    <div className={styles.card}>
-      <button onClick={onLogout} className={styles.logoutButton}>Logout</button>
+    <div className="card">
+      <button onClick={onLogout} className="logoutButton">Logout</button>
     </div>
   );
 }

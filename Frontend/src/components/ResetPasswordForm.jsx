@@ -1,4 +1,5 @@
-import styles from "../styles/Admin.module.css";
+import "../styles/AdminLayout.css";
+import "../styles/FormControlsLayout.css";
 
 function ResetPasswordForm({
     resetUser,
@@ -9,20 +10,20 @@ function ResetPasswordForm({
     resetPasswordRef,
   }) {
   return (
-    <div className={styles.card}>
+    <div className="card">
       <h3>Reset Password for {resetUser.username}</h3>
-      <form onSubmit={onSubmit} className={styles.createForm}>
+      <form onSubmit={onSubmit} className="createForm">
         <input
             type="password"
             ref={resetPasswordRef}
             placeholder="New Password"
             value={resetPassword}
             onChange={(e) => onChangePassword(e.target.value)}
-            className={styles.input}
+            className="input"
         required
         />
-        <button type="submit" className={styles.createButton}>Save New Password</button>
-        <button type="button" onClick={onCancel} className={styles.deleteButton}>Cancel</button>
+        <button type="submit" className="createButton">Save New Password</button>
+        <button type="button" onClick={onCancel} className="deleteButton">Cancel</button>
       </form>
     </div>
   );

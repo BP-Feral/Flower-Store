@@ -5,9 +5,7 @@ import styles from "../styles/Navbar.module.css";
 import { showSuccess } from "../utils/toast.jsx";
 
 function Navbar() {
-  const { user } = useContext(AuthContext);
-  const { setUser } = useContext(AuthContext); // use context inside Navbar or Admin Panel
-  
+  const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -38,8 +36,13 @@ function Navbar() {
       <div className={styles.userSection}>
         {user ? (
           <div className={styles.profile} onClick={toggleDropdown}>
+            
             <span className={styles.username}>{user.username}</span>
-            <div className={styles.avatar}></div>
+            <img
+              src={user.profile_picture}
+              alt=" "
+              className={styles.avatar}
+            />
             
             {showDropdown && (
               <div className={styles.dropdown}>
@@ -52,6 +55,10 @@ function Navbar() {
 
                 {user.username === "admin" && (
                   <Link to="/admin">Admin Panel</Link>
+                )}
+
+                {user.permissions?.view_cameras && (
+                  <Link to="/cameras">Camera Feed</Link>
                 )}
 
                 <button onClick={handleLogout} className={styles.dropdownButton}>

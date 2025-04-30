@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   height: 50px;
-  background-color: #151515;
+  background-color: #c55858;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -78,9 +78,10 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #ccc;
-  margin-right: 0.2rem;
-  margin-left: 0.5rem;
+  object-fit: cover;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
 }
 
 .username {

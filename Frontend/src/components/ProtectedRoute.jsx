@@ -8,21 +8,32 @@ function ProtectedRoute({ children, requiredPermission }) {
   if (!user) {
     return <Navigate to="/login" />;
   }
-  
-  // Admin can access anything
+
+  // Admin can access everything
   if (user.username === "admin") {
     return children;
   }
-  
-  // Otherwise check product permissions
-  const hasProductPermission = user.permissions.add_product || user.permissions.edit_product || user.permissions.delete_product;
-  
-  if (!hasProductPermission) {
-    return <Navigate to="/" />;
+
+  // If a specific permission is required, check for it
+  if (requiredPermission) {
+    if (user.permissions?.[requiredPermission]) {
+      return children;
+    } else {
+      return <Navigate to="/" />;
+    }
   }
-  
-  return children;
-  
+
+  // Otherwise check general product permission
+  const hasProductPermission =
+    user.permissions.add_product ||
+    user.permissions.edit_product ||
+    user.permissions.delete_product;
+
+  if (hasProductPermission) {
+    return children;
+  }
+
+  return <Navigate to="/" />;
 }
 
 export default ProtectedRoute;
