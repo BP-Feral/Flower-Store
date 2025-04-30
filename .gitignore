@@ -1,3 +1,4 @@
 Backend/Note.txt
 Backend/database.db
 Backend/uploads/*
+Backend/__pycache__/*
