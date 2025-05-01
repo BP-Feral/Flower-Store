@@ -7,15 +7,15 @@ function CameraSettingsSection() {
 
   useEffect(() => {
     fetch("http://localhost:5000/camera-feature")
-      .then((res) => res.json())
-      .then((data) => setEnabled(data.enabled));
+      .then(res => res.json())
+      .then(data => setEnabled(data.enabled));
 
     fetchCameras();
   }, []);
 
   const fetchCameras = () => {
     fetch("http://localhost:5000/cameras")
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(setCameras);
   };
 
@@ -25,17 +25,18 @@ function CameraSettingsSection() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ enabled: !enabled }),
     })
-      .then((res) => res.json())
-      .then((data) => setEnabled(data.enabled));
+      .then(res => res.json())
+      .then(data => setEnabled(data.enabled));
   };
 
   const addCamera = () => {
+    if (!newCamera.name || !newCamera.rtsp_url) return;
     fetch("http://localhost:5000/cameras", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCamera),
     })
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(() => {
         setNewCamera({ name: "", rtsp_url: "" });
         fetchCameras();
@@ -44,7 +45,6 @@ function CameraSettingsSection() {
 
   const deleteCamera = (id) => {
     fetch(`http://localhost:5000/cameras/${id}`, { method: "DELETE" })
-      .then((res) => res.json())
       .then(() => fetchCameras());
   };
 
@@ -64,20 +64,20 @@ function CameraSettingsSection() {
             type="text"
             placeholder="Camera Name"
             value={newCamera.name}
-            onChange={(e) => setNewCamera({ ...newCamera, name: e.target.value })}
+            onChange={e => setNewCamera({ ...newCamera, name: e.target.value })}
             className="input"
           />
           <input
             type="text"
             placeholder="RTSP URL"
             value={newCamera.rtsp_url}
-            onChange={(e) => setNewCamera({ ...newCamera, rtsp_url: e.target.value })}
+            onChange={e => setNewCamera({ ...newCamera, rtsp_url: e.target.value })}
             className="input"
           />
           <button onClick={addCamera} className="createButton">Add Camera</button>
 
           <h4>Existing Cameras</h4>
-          {cameras.map((cam) => (
+          {cameras.map(cam => (
             <div key={cam.id} className="cameraItem">
               <strong>{cam.name}</strong>
               <button onClick={() => deleteCamera(cam.id)} className="deleteButton">Delete</button>

@@ -11,8 +11,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Store from "./pages/Store";
 import CameraFeed from "./pages/CameraFeed";
 
-
 function App() {
+  
   return (
     <AuthProvider>
       <Router>
