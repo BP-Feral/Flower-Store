@@ -1,103 +1,102 @@
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-    color: white;
-    table-layout: fixed;
-  }
-  
-  .table tr {
-    border-bottom: 1px solid #4b5563;
-    transition: background-color 0.2s ease;
-  }
-  
-  .table tr:hover {
-    background-color: #101010;
-  }
-  
-  .table th,
-  .table td {
-    text-align: left;
-    padding: 10px 15px;
-    font-size: 0.85rem;
-    vertical-align: middle;
-  }
-  
-  .idColumn {
-    width: 20px;
-  }
-  
-  .usernameColumn {
-    width: 180px;
-  }
-  
-  .adminRow {
-    background-color: #101010;
-    border-bottom: 2px solid #202020;
-  }
-  
-  .permissionsDisplay {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    max-width: 450px;
-  }
-  
-  .permissionItem {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    gap: 0.3rem;
-    font-size: 0.85rem;
-  }
-  
-  .adminBadge {
-    margin-left: 0.5rem;
-    padding: 2px 6px;
-    font-size: 0.75rem;
-    color: #10b981;
-    background-color: #1f2937;
-    border-radius: 4px;
-  }
-  
-  .staffBadge {
-    margin-left: 0.5rem;
-    padding: 2px 6px;
-    font-size: 0.75rem;
-    color: #8253ce;
-    background-color: #1f2937;
-    border-radius: 4px;
-  }
-  
-  .table td button {
-    margin-right: 0.5rem;
-  }
-  
-  .actionButtons {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-  
-  .table tr:hover .actionButtons {
-    opacity: 1;
-  }
-  
-  .userInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .avatarSmall {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #ccc;
-  }
-  
-  .manageUsersPermission {
-    color: #e46161;
-    font-weight: bold;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  color: white;
+  table-layout: fixed;
+}
+
+.table tr {
+  border-bottom: 1px solid #4b5563;
+  transition: background-color 0.2s ease;
+}
+
+.table tr:hover {
+  background-color: #101010;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 10px 15px;
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+
+.idColumn {
+  width: 20px;
+}
+
+.usernameColumn {
+  width: 180px;
+}
+
+.adminRow {
+  background-color: #101010;
+  border-bottom: 2px solid #202020;
+}
+
+.permissionsDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 450px;
+}
+
+.permissionItem {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.adminBadge {
+  margin-left: 0.5rem;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  color: #10b981;
+  background-color: #1f2937;
+  border-radius: 4px;
+}
+
+.staffBadge {
+  margin-left: 0.5rem;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  color: #8253ce;
+  background-color: #1f2937;
+  border-radius: 4px;
+}
+
+.table td button {
+  margin-right: 0.5rem;
+}
+
+.actionButtons {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.table tr:hover .actionButtons {
+  opacity: 1;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarSmall {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.manageUsersPermission {
+  color: #e46161;
+  font-weight: bold;
+}

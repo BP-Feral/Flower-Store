@@ -1,4 +1,4 @@
-import "../styles/AdminLayout.css";
+import "../styles/commonStyles.css";
 
 function CustomizationCard() {
   return (

@@ -1,0 +1,42 @@
+.loginWrapper {
+    display: flex;
+    justify-content: center;   /* center horizontally */
+    align-items: center;       /* center vertically */
+    min-height: 100vh;         /* take full screen height */
+}
+
+.loginCard {
+    background-color: #151515;
+    background-image: url("/assets/images/arabesque.png");
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* stronger darker shadow */
+    width: 100%;
+    max-width: 400px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.loginInput {
+    width: 100%;
+    max-width: 400px;
+    min-width: 400px;
+    margin-bottom: 0.5rem;
+    margin-right: 10px;
+    padding: 0.4rem;
+    border-radius: 6px;
+    outline: none;
+    font-size: 0.9rem;
+    border: 1px solid #10b981;
+    box-sizing: border-box;
+    font-family: 'NotoKR', sans-serif;
+    background-color: #111827;
+    color: white;
+  }
+  
+  .loginInput:focus {
+    border: 1px solid #10b981;
+  }

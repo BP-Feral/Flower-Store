@@ -5,7 +5,7 @@ import { showError, showSuccess } from "../../utils/toast.jsx";
 import "../../styles/UserTableLayout.css";
 import "../../styles/FormControlsLayout.css";
 
-function EditUserSection({ users, fetchUsers }) {
+function EditUserSection({ users, fetchUsers, setResetUser }) {
   const [editingUserId, setEditingUserId] = useState(null);
   const [editUsername, setEditUsername] = useState("");
   const [editPermissions, setEditPermissions] = useState({});
@@ -77,7 +77,7 @@ function EditUserSection({ users, fetchUsers }) {
       onSaveEdit={handleSave}
       onDelete={handleDelete}
       setEditingUserId={setEditingUserId}
-      onResetPassword={() => {}} // Handled separately
+      onResetPassword={setResetUser}
     />
   );
 }

@@ -1,4 +1,4 @@
-import "../styles/AdminLayout.css";
+import "../styles/commonStyles.css";
 import "../styles/LogoutCardLayout.css";
 
 function LogoutCard({ onLogout }) {

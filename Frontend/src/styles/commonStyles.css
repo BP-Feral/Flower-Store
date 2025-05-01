@@ -1,42 +1,59 @@
+/* Layout wrapper */
 .pageWrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 41px); /* FIX: height minus Navbar */
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 2rem 1rem;
+  padding-top: 80px;
+  gap: 2rem;
   width: 100%;
-  background-color: transparent;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
+/* Card component */
 .card {
-  background: #151515;
+  background-color: #151515;
+  background-image: url("/assets/images/arabesque.png");
+  background-repeat: repeat;
+  background-size: auto;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* stronger darker shadow */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 400px;
-}  
-
-.heading {
-  text-align: center;
-  margin-bottom: 1rem;
 }
 
+/* Headings */
+.heading {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+/* Input fields */
 .input {
   width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  max-width: 250px;
+  margin-bottom: 0.5rem;
+  margin-right: 10px;
+  padding: 0.4rem;
   border-radius: 6px;
   outline: none;
+  font-size: 0.9rem;
   border: 1px solid #10b981;
-  transition: border-color 0.2s ease;
-  box-sizing: border-box; /* NEW! */
+  box-sizing: border-box;
+  font-family: 'NotoKR', sans-serif;
+  background-color: #111827;
+  color: white;
 }
 
 .input:focus {
-  outline: none;
-  border: 1px solid #10b981; /* Green border on focus */
+  border: 1px solid #10b981;
 }
 
+/* Buttons */
 .button {
   width: 100%;
   padding: 0.75rem;
@@ -57,13 +74,16 @@
   cursor: not-allowed;
 }
 
+/* Error text */
 .error {
   color: red;
   text-align: center;
   margin-top: 1rem;
 }
 
+/* Password requirements text */
 .requirements {
   margin-top: 1rem;
   font-size: 0.9rem;
+  color: #ccc;
 }

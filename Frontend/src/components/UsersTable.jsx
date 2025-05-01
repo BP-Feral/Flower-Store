@@ -1,6 +1,6 @@
 import "../styles/UserTableLayout.css";
 import "../styles/FormControlsLayout.css";
-import "../styles/AdminLayout.css";
+import "../styles/commonStyles.css";
 
 function UsersTable({
   users,

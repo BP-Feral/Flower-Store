@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import "../styles/AdminLayout.css"
+import "../styles/commonStyles.css";
 import "../styles/FormControlsLayout.css"
 
 const CameraFeed = () => {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/commonStyles.css"
 import styles from "../styles/Store.module.css";
 
 function Store() {

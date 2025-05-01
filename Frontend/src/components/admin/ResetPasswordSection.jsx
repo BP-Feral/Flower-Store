@@ -1,10 +1,18 @@
 import { useRef, useState } from "react";
 import ResetPasswordForm from "../ResetPasswordForm.jsx";
 import { showError, showSuccess } from "../../utils/toast.jsx";
+import { useEffect } from "react";
+
 
 function ResetPasswordSection({ fetchUsers, resetUser, setResetUser }) {
   const resetPasswordRef = useRef(null);
   const [resetPassword, setResetPassword] = useState("");
+
+  useEffect(() => {
+    if (resetUser && resetPasswordRef.current) {
+      resetPasswordRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [resetUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +40,16 @@ function ResetPasswordSection({ fetchUsers, resetUser, setResetUser }) {
   if (!resetUser) return null;
 
   return (
-    <ResetPasswordForm
-      resetUser={resetUser}
-      resetPassword={resetPassword || ""}
-      resetPasswordRef={resetPasswordRef}
-      onChangePassword={setResetPassword}
-      onSubmit={handleSubmit}
-      onCancel={() => setResetUser(null)}
-    />
+    <div ref={resetPasswordRef}>
+      <ResetPasswordForm
+        resetUser={resetUser}
+        resetPassword={resetPassword || ""}
+        resetPasswordRef={resetPasswordRef}
+        onChangePassword={setResetPassword}
+        onSubmit={handleSubmit}
+        onCancel={() => setResetUser(null)}
+      />
+    </div>
   );
 }
 

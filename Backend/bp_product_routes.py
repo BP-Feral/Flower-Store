@@ -22,7 +22,7 @@ def get_products():
                 "stock": product["stock"],
                 "price": product["price"],
                 "image_url": product["image_url"],
-                "tags": json.loads(product["tags"]) if product["tags"] else []
+                "tags": json.loads(product["tags"]) if product["tags"] else [],
             })
 
         return jsonify(product_list)

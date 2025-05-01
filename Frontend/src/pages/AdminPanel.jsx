@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { showError } from "../utils/toast.jsx";
 
-import "../styles/AdminLayout.css";
+import "../styles/commonStyles.css";
 
 import ProfileCard from "../components/ProfileCard.jsx";
 import CustomizationCard from "../components/CustomizationCard.jsx";
@@ -18,6 +18,7 @@ function AdminPanel() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [resetUser, setResetUser] = useState(null);
 
   useEffect(() => {
     if (!user) {
@@ -70,9 +71,17 @@ function AdminPanel() {
 
       {user.permissions.manage_users && (
         <>
-          <EditUserSection users={users} fetchUsers={fetchUsers} />
+          <EditUserSection
+            users={users}
+            fetchUsers={fetchUsers}
+            setResetUser={setResetUser}
+          />
           <CreateUserSection fetchUsers={fetchUsers} />
-          <ResetPasswordSection fetchUsers={fetchUsers} />
+          <ResetPasswordSection
+            fetchUsers={fetchUsers}
+            resetUser={resetUser}
+            setResetUser={setResetUser}
+          />
         </>
       )}
 

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { showSuccess, showError } from "../utils/toast.jsx";
 import { AuthContext } from "../contexts/AuthContext"; // use context
-import styles from "../styles/Login.module.css";
+import "../styles/loginLayout.css";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -67,25 +67,25 @@ function Login() {
   
 
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.card}>
-        <h2 className={styles.heading}>Login</h2>
+    <div className="loginWrapper">
+      <div className="loginCard">
+        <h2 className="heading">Login</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className={styles.input}
+            className="loginInput"
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
+            className="loginInput"
           />
-          <button type="submit" className={styles.button}>
+          <button type="submit" className="button">
             Login
           </button>
         </form>

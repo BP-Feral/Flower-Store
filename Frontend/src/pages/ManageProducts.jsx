@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { showSuccess, showError } from "../utils/toast.jsx";
 import ConfirmModal from "../components/ConfirmModals.jsx";
 
-import "../styles/AdminLayout.css";
+import "../styles/commonStyles.css";
 import "../styles/FormControlsLayout.css";
 import "../styles/UserTableLayout.css";
 
