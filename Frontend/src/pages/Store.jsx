@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
-import "../styles/commonStyles.css"
+import { Link } from "react-router-dom";
+import "../styles/commonStyles.css";
 import styles from "../styles/Store.module.css";
 
 function Store() {
   const [products, setProducts] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   useEffect(() => {
     fetchProducts();
+    fetchTags();
   }, []);
 
   const fetchProducts = async () => {
     try {
       const response = await fetch("http://localhost:5000/products");
       const data = await response.json();
-
       if (response.ok) {
         setProducts(data);
       } else {
@@ -24,14 +27,61 @@ function Store() {
     }
   };
 
+  const fetchTags = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/tags");
+      const data = await response.json();
+      if (response.ok) {
+        setTags(data);
+      } else {
+        console.error(data.error || "Failed to load tags.");
+      }
+    } catch (error) {
+      console.error("Fetch tags error:", error);
+    }
+  };
+
+  const toggleTag = (tagId) => {
+    setSelectedTags((prev) =>
+      prev.includes(tagId)
+        ? prev.filter((id) => id !== tagId)
+        : [...prev, tagId]
+    );
+  };
+
+  const filteredProducts = selectedTags.length === 0
+    ? products
+    : products.filter((product) =>
+        selectedTags.every((tagId) =>
+          (product.tags || []).map(String).includes(String(tagId))
+        )
+      );
+
   return (
     <div className={styles.pageWrapper}>
+
+      <div className={styles.tagFilter}>
+        {tags.map((tag) => (
+          <button
+            key={tag.id}
+            onClick={() => toggleTag(tag.id)}
+            className={`${styles.tagButton} ${selectedTags.includes(tag.id) ? styles.selected : ""}`}
+          >
+            {tag.name}
+          </button>
+        ))}
+      </div>
+
       <div className={styles.productGrid}>
-        {products.length === 0 ? (
-          <p>No products available yet.</p>
+        {filteredProducts.length === 0 ? (
+          <p>No matching products.</p>
         ) : (
-          products.map((product) => (
-            <div key={product.id} className={styles.productCard}>
+          filteredProducts.map((product) => (
+            <Link
+              key={product.id}
+              to={`/product/${product.id}`}
+              className={styles.productCard}
+            >
               {product.image_url && (
                 <img
                   src={`http://localhost:5000/uploads/${product.image_url}`}
@@ -40,9 +90,9 @@ function Store() {
                 />
               )}
               <h3>{product.name}</h3>
-              <p>{product.description}</p>
+              <p>{product.description.slice(0, 100)}...</p>
               <p><strong>${product.price}</strong></p>
-            </div>
+            </Link>
           ))
         )}
       </div>

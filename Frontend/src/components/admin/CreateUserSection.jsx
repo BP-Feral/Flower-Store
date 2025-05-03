@@ -1,4 +1,3 @@
-// components/admin/CreateUserSection.jsx
 import { useRef, useState } from "react";
 import CreateUserForm from "../CreateUserForm.jsx";
 import { showError, showSuccess } from "../../utils/toast.jsx";
@@ -49,6 +48,7 @@ function CreateUserSection({ fetchUsers }) {
             delete_tags: false,
             edit_tags: false,
             view_cameras: false,
+            customize_store: false,
           });
         setShowCreateForm(false);
         fetchUsers();
@@ -87,7 +87,7 @@ function CreateUserSection({ fetchUsers }) {
       }}
       className="createButton"
     >
-      Create New User
+      Add New Staff Account
     </button>
   );
 }

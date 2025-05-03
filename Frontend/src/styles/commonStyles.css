@@ -5,11 +5,11 @@
   align-items: stretch;
   justify-content: flex-start;
   padding: 2rem 1rem;
-  padding-top: 80px;
   gap: 2rem;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
+  padding-top: 80px;
 }
 
 /* Card component */
@@ -86,4 +86,13 @@
   margin-top: 1rem;
   font-size: 0.9rem;
   color: #ccc;
+}
+
+.resetButton {
+  background-color: #9b2e2e;
+  color: white;
+}
+
+.resetButton:hover {
+  background-color: #ef4444;
 }

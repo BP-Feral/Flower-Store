@@ -1,14 +1,14 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { showSuccess, showError } from "../utils/toast.jsx";
-import { AuthContext } from "../contexts/AuthContext"; // use context
+import { AuthContext } from "../contexts/AuthContext";
 import "../styles/loginLayout.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext); // get setUser from context
+  const { setUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

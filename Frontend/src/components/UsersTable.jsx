@@ -68,7 +68,8 @@ function UsersTable({
                       "create_tags",
                       "delete_tags",
                       "edit_tags",
-                      ...(user.username === "admin" ? ["manage_users", "view_cameras"] : ["view_cameras"]),
+                      "customize_store",
+                      ...(user.username === "admin" ? ["manage_staff", "view_cameras"] : ["view_cameras"]),
                     ].map((permKey) => {
                       const perms = editingUserId === user.id
                         ? editPermissions
@@ -77,7 +78,7 @@ function UsersTable({
                       const value = perms[permKey] || false;
 
                       const permissionLabelClass =
-                      permKey === "manage_users" || permKey === "view_cameras"
+                      permKey === "manage_staff" || permKey === "view_cameras"
                         ? "permissionItem manageUsersPermission"
                         : "permissionItem";
                         

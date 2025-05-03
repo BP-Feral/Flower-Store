@@ -38,6 +38,7 @@
   .createButton,
   .editButton {
     background-color: #059669;
+    max-width: 200px;
     color: white;
   }
   

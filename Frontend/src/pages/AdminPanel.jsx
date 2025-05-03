@@ -5,13 +5,12 @@ import { showError } from "../utils/toast.jsx";
 
 import "../styles/commonStyles.css";
 
-import ProfileCard from "../components/ProfileCard.jsx";
 import CustomizationCard from "../components/CustomizationCard.jsx";
-import LogoutCard from "../components/LogoutCard.jsx";
 import EditUserSection from "../components/admin/EditUserSection.jsx";
 import CreateUserSection from "../components/admin/CreateUserSection.jsx";
 import ResetPasswordSection from "../components/admin/ResetPasswordSection.jsx";
 import CameraSettingsSection from "../components/admin/CameraSettingsSection.jsx";
+import LogoutCard from "../components/LogoutCard.jsx";
 
 function AdminPanel() {
   const { user, setUser } = useContext(AuthContext);
@@ -67,9 +66,8 @@ function AdminPanel() {
   return (
     <div className="pageWrapper">
       <h2 className="heading">Admin Panel</h2>
-      <ProfileCard />
 
-      {user.permissions.manage_users && (
+      {user.permissions.manage_staff && (
         <>
           <EditUserSection
             users={users}
@@ -85,8 +83,12 @@ function AdminPanel() {
         </>
       )}
 
-      {user.permissions.customize_store && <CustomizationCard />}
-      {user.permissions.manage_users && <CameraSettingsSection />}
+      {user.permissions.customize_store && (
+        <>
+          <CustomizationCard />
+        </>
+      )}
+      {user.permissions.manage_staff && <CameraSettingsSection />}
       <LogoutCard
         onLogout={() => {
           localStorage.clear();

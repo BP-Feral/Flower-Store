@@ -14,7 +14,7 @@ function CreateUserForm({
 }) {
   return (
     <form onSubmit={onSubmit}>
-      <h3>Create New User</h3>
+      <h3>Add New Staff Account</h3>
       <input
         type="text"
         ref={createUserRef}
@@ -39,7 +39,8 @@ function CreateUserForm({
           "create_tags",
           "delete_tags",
           "edit_tags",
-          "view_cameras"
+          "view_cameras",
+          "customize_store"
         ].map((perm) => (
           <label
               key={perm}

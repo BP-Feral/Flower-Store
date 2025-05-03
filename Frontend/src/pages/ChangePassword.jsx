@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showSuccess, showError } from "../utils/toast.jsx";
-import styles from "../styles/ChangePassword.module.css";
+import { CheckCircle, XCircle } from "lucide-react";
+import "../styles/loginLayout.css"
 
 function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
@@ -39,7 +40,7 @@ function ChangePassword() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username, // 👈 Send username too
+        username: username,
         new_password: newPassword,
       }),
     });
@@ -58,9 +59,9 @@ function ChangePassword() {
   const isPasswordValid = Object.values(errors).every(Boolean);
 
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.card}>
-        <h2 className={styles.heading}>Change Password</h2>
+    <div className="loginWrapper">
+      <div className="loginCard">
+        <h2 className="heading">Change Password</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="password"
@@ -68,26 +69,31 @@ function ChangePassword() {
             value={newPassword}
             onChange={handlePasswordChange}
             required
-            className={styles.input}
+            className="loginInput"
           />
-          <div className={styles.requirements}>
-            <p style={{ color: errors.length ? "green" : "#fc618a" }}>
-              {errors.length ? "✅" : "❌"} At least 8 characters
-            </p>
-            <p style={{ color: errors.number ? "green" : "#fc618a" }}>
-              {errors.number ? "✅" : "❌"} Contains a number
-            </p>
-            <p style={{ color: errors.uppercase ? "green" : "#fc618a" }}>
-              {errors.uppercase ? "✅" : "❌"} Contains an uppercase letter
-            </p>
-            <p style={{ color: errors.lowercase ? "green" : "#fc618a" }}>
-              {errors.lowercase ? "✅" : "❌"} Contains a lowercase letter
-            </p>
+          <div className="requirements">
+          <p style={{ color: errors.length ? "green" : "#fc618a", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            {errors.length ? <CheckCircle size={16} /> : <XCircle size={16} />}
+            At least 8 characters
+          </p>
+          <p style={{ color: errors.number ? "green" : "#fc618a", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            {errors.number ? <CheckCircle size={16} /> : <XCircle size={16} />}
+            Contains a number
+          </p>
+          <p style={{ color: errors.uppercase ? "green" : "#fc618a", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            {errors.uppercase ? <CheckCircle size={16} /> : <XCircle size={16} />}
+            Contains an uppercase letter
+          </p>
+          <p style={{ color: errors.lowercase ? "green" : "#fc618a", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            {errors.lowercase ? <CheckCircle size={16} /> : <XCircle size={16} />}
+            Contains a lowercase letter
+          </p>
+
           </div>
           <button
             type="submit"
             disabled={!isPasswordValid}
-            className={isPasswordValid ? styles.button : styles.buttonDisabled}
+            className="button"
           >
             Change Password
           </button>
