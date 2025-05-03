@@ -37,8 +37,9 @@ VALUES (?, ?, ?, ?, ?)
         "create_tags": True,
         "delete_tags": True,
         "edit_tags": True,
-        "manage_users": True,
-        "view_cameras": True
+        "manage_staff": True,
+        "view_cameras": True,
+        "customize_store": True
     }),
     True
 ))
@@ -92,6 +93,26 @@ CREATE TABLE settings (
 
 c.execute('''
 INSERT INTO settings (key, value) VALUES ('camera_enabled', '1'\
+)'''
+)
+
+c.execute('''
+CREATE TABLE product_specs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER,
+    key TEXT,
+    value TEXT
+)'''
+)
+
+c.execute('''
+CREATE TABLE reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER,
+    username TEXT,
+    rating INTEGER,
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )'''
 )
 

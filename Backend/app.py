@@ -6,6 +6,7 @@ from bp_auth import bp_auth
 from bp_user_routes import bp_user
 from bp_product_routes import bp_product
 from bp_camera_routes import bp_camera
+from bp_settings_routes import bp_settings
 
 app = Flask(__name__)
 CORS(app)
@@ -13,6 +14,7 @@ CORS(app)
 app.register_blueprint(bp_auth)
 app.register_blueprint(bp_user)
 app.register_blueprint(bp_product)
+app.register_blueprint(bp_settings)
 app.register_blueprint(bp_camera)
 
 @app.route('/')
