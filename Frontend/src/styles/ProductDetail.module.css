@@ -70,8 +70,9 @@
 }
 
 .reviewCard {
+    background-color: var(--card-bg, #151515);
+    background-image: url("/assets/images/arabesque.png");
     padding: 1rem;
-    border: 1px solid #ddd;
     border-radius: 8px;
     margin-bottom: 1rem;
 }
@@ -87,4 +88,62 @@
     flex-direction: row;
     gap: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .reviewForm {
+    background-color: var(--card-bg, #151515);
+    background-image: url("/assets/images/arabesque.png");
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .reviewForm input,
+  .reviewForm textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .starRating {
+    display: flex;
+    gap: 4px;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .reviewForm button {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .reviewForm button:hover {
+    background-color: #388e3c;
+  }
+  .inputBox {
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+    margin-right: 10px;
+    padding: 0.4rem;
+    border-radius: 6px;
+    outline: none;
+    font-size: 0.9rem;
+    border: 1px solid #10b981;
+    box-sizing: border-box;
+    font-family: 'NotoKR', sans-serif;
+    background-color: #111827;
+    color: white;
+  }
+  
+  .inputBox:focus {
+    border: 1px solid #10b981;
   }

@@ -7,6 +7,9 @@ import { showSuccess } from "../utils/toast.jsx";
 function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [username, setUsername] = useState("");
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -16,12 +19,63 @@ function ProductDetailPage() {
       .catch((err) => console.error("Error loading product:", err));
   }, [id]);
 
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    const newReview = {
+      username,
+      rating: Number(rating),
+      comment,
+    };
+
+    fetch(`http://localhost:5000/products/${id}/reviews`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newReview),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          showSuccess("Review added!");
+          setProduct((prev) => ({
+            ...prev,
+            reviews: [
+              { ...newReview, created_at: new Date().toISOString() },
+              ...prev.reviews,
+            ],
+          }));
+          setUsername("");
+          setRating(5);
+          setComment("");
+        }
+      })
+      .catch(() => alert("Failed to submit review"));
+  };
+
+  const renderStars = (currentRating, setFn = null) => {
+    return [...Array(5)].map((_, i) => {
+      const index = i + 1;
+      return (
+        <span
+          key={index}
+          onClick={() => setFn && setFn(index)}
+          style={{
+            cursor: setFn ? "pointer" : "default",
+            color: index <= currentRating ? "#ffc107" : "#e4e5e9",
+            fontSize: "1.5rem",
+          }}
+        >
+          ★
+        </span>
+      );
+    });
+  };
+
   if (!product) return <p>Loading...</p>;
   if (product.error) return <p>{product.error}</p>;
 
   return (
     <div className={styles.detailWrapper}>
-      <div className={styles.productCard}> {/* Product Details Card */}
+      <div className={styles.productCard}>
         <div className={styles.imageSection}>
           {product.image_url && (
             <img
@@ -66,7 +120,7 @@ function ProductDetailPage() {
         </div>
       </div>
 
-      <div className={styles.reviewsSection}> {/* Reviews Section */}
+      <div className={styles.reviewsSection}>
         <h2>Reviews</h2>
         {product.reviews.length === 0 ? (
           <p>No reviews yet.</p>
@@ -74,12 +128,37 @@ function ProductDetailPage() {
           product.reviews.map((review, idx) => (
             <div key={idx} className={styles.reviewCard}>
               <strong>{review.username}</strong>
-              <p>Rating: {review.rating}/5</p>
+              <p>{renderStars(review.rating)}</p>
               <p>{review.comment}</p>
               <small>{new Date(review.created_at).toLocaleDateString()}</small>
             </div>
           ))
         )}
+
+        <div className={styles.reviewForm}>
+          <h3>Leave a Review</h3>
+          <form onSubmit={handleReviewSubmit}>
+            <input
+              type="text"
+              placeholder="Your name"
+              className={styles.inputBox}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <div className={styles.starRating}>
+              {renderStars(rating, setRating)}
+            </div>
+            <textarea
+              placeholder="Your review"
+              value={comment}
+              className={styles.inputBox}
+              onChange={(e) => setComment(e.target.value)}
+              required
+            ></textarea>
+            <button type="submit">Submit Review</button>
+          </form>
+        </div>
       </div>
     </div>
   );

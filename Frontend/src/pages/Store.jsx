@@ -90,8 +90,32 @@ function Store() {
                 />
               )}
               <h3>{product.name}</h3>
-              <p>{product.description.slice(0, 100)}...</p>
-              <p><strong>${product.price}</strong></p>
+              <p>
+                {product.description.length > 100
+                  ? product.description.slice(0, 100) + "..."
+                  : product.description}
+              </p>
+              <div className={styles.cardFooter}>
+                {product.avg_rating > 0 && (
+                  <div className={styles.starRating}>
+                    {[...Array(5)].map((_, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          color: i < Math.round(product.avg_rating) ? "#ffc107" : "#ccc",
+                          fontSize: "1rem",
+                        }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                    <small>({product.review_count})</small>
+                  </div>
+                )}
+
+                <p><strong>${product.price}</strong></p>
+              </div>
+
             </Link>
           ))
         )}

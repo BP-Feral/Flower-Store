@@ -14,10 +14,20 @@ def get_products():
     try:
         conn = get_db_connection()
         products = conn.execute("SELECT * FROM products").fetchall()
-        conn.close()
 
         product_list = []
         for product in products:
+            reviews = conn.execute(
+                "SELECT rating FROM reviews WHERE product_id = ?", (product["id"],)
+            ).fetchall()
+
+            if reviews:
+                avg_rating = round(sum(r["rating"] for r in reviews) / len(reviews), 1)
+                review_count = len(reviews)
+            else:
+                avg_rating = 0
+                review_count = 0
+
             product_list.append({
                 "id": product["id"],
                 "name": product["name"],
@@ -26,13 +36,15 @@ def get_products():
                 "price": product["price"],
                 "image_url": product["image_url"],
                 "tags": json.loads(product["tags"]) if product["tags"] else [],
+                "avg_rating": avg_rating,
+                "review_count": review_count
             })
 
+        conn.close()
         return jsonify(product_list)
     except Exception as e:
         print("Error fetching products:", e)
         return jsonify({"error": "Server error"}), 500
-
 
 # ------------------------
 # GET single product by ID
@@ -324,3 +336,7 @@ def add_review(product_id):
     conn.commit()
     conn.close()
     return jsonify({"message": "Review added"})
+
+# -----------------------
+# Get review
+#
