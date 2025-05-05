@@ -113,7 +113,7 @@ function Store() {
                   </div>
                 )}
 
-                <p><strong>${product.price}</strong></p>
+                <p><strong>{product.price} RON</strong></p>
               </div>
 
             </Link>

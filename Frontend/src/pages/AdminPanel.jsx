@@ -66,7 +66,6 @@ function AdminPanel() {
   return (
     <div className="pageWrapper">
       <h2 className="heading">Admin Panel</h2>
-
       {user.permissions.manage_staff && (
         <>
           <EditUserSection

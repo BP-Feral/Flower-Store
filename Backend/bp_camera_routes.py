@@ -42,7 +42,6 @@ def generate_mjpeg(rtsp_url):
         cap.release()
         print("RTSP connection closed.")
 
-
 @bp_camera.route("/cameras/<int:camera_id>/stream")
 def stream_camera(camera_id):
     conn = get_db_connection()
@@ -54,7 +53,6 @@ def stream_camera(camera_id):
 
     return Response(generate_mjpeg(row["rtsp_url"]),
                     mimetype="multipart/x-mixed-replace; boundary=frame")
-
 
 @bp_camera.route("/camera-feature", methods=["GET", "PUT"])
 def camera_feature():

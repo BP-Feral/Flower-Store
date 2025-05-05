@@ -14,6 +14,8 @@ function CustomizationCard() {
   const [navbarImage, setNavbarImage] = useState("/assets/images/cartographer.png");
   const [cardImage, setCardImage] = useState("/assets/images/arabesque.png");
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const themeImages = {
     1: "/assets/images/cartographer.png",
     2: "/assets/images/arabesque.png",
@@ -136,75 +138,95 @@ function CustomizationCard() {
 
   return (
     <div className="card">
-      <h2 className="heading">Store Customization</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div>
-          <label htmlFor="storeTitle" style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>Store Title</label>
-          <input
-            type="text"
-            id="storeTitle"
-            placeholder="Flower Store"
-            value={storeTitle}
-            onChange={(e) => setStoreTitle(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div>
-          <label htmlFor="favicon" style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>Favicon</label>
-          <input
-            type="file"
-            id="favicon"
-            accept="image/x-icon,image/png,image/svg+xml,image/jpeg"
-            onChange={(e) => setFaviconFile(e.target.files[0])}
-            className="input"
-          />
-        </div>
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="button"
+        style={{ marginBottom: "1rem", backgroundColor: "#10b981" }}
+      >
+        {isExpanded ? "Hide Customization" : "Show Customization"}
+      </button>
 
-        <div>
-          <h4 style={{ color: 'white', marginTop: '1rem' }}>Background Theme</h4>
-          {renderThemeGrid(bgImage, setBgImage)}
-          <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Background Color</label>
-          <input
-            type="color"
-            value={bgColor}
-            onChange={(e) => setBgColor(e.target.value)}
-            style={{ width: '80px', height: '40px', border: 'none', cursor: 'pointer' }}
-          />
-        </div>
+      {isExpanded && (
+        <>
+          <h2 className="heading">Store Customization</h2>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div>
+              <label htmlFor="storeTitle" style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>Store Title</label>
+              <input
+                type="text"
+                id="storeTitle"
+                placeholder="Flower Store"
+                value={storeTitle}
+                onChange={(e) => setStoreTitle(e.target.value)}
+                className="input"
+              />
+            </div>
 
-        <div>
-          <h4 style={{ color: 'white', marginTop: '1rem' }}>Navbar Theme</h4>
-          {renderThemeGrid(navbarImage, setNavbarImage)}
-          <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Navbar Color</label>
-          <input
-            type="color"
-            value={navbarColor}
-            onChange={(e) => setNavbarColor(e.target.value)}
-            style={{ width: '80px', height: '40px', border: 'none', cursor: 'pointer' }}
-          />
-        </div>
+            <div>
+              <label htmlFor="favicon" style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>Favicon</label>
+              <input
+                type="file"
+                id="favicon"
+                accept="image/x-icon,image/png,image/svg+xml,image/jpeg"
+                onChange={(e) => setFaviconFile(e.target.files[0])}
+                className="input"
+              />
+            </div>
 
-        <div>
-          <h4 style={{ color: 'white', marginTop: '1rem' }}>Card Theme</h4>
-          {renderThemeGrid(cardImage, setCardImage)}
-          <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Card Color</label>
-          <input
-            type="color"
-            value={cardColor}
-            onChange={(e) => setCardColor(e.target.value)}
-            style={{ width: '80px', height: '40px', border: 'none', cursor: 'pointer' }}
-          />
-        </div>
+            <div>
+              <h4 style={{ color: 'white', marginTop: '1rem' }}>Background Theme</h4>
+              {renderThemeGrid(bgImage, setBgImage)}
+              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Background Color</label>
+              <input
+                type="color"
+                value={bgColor}
+                onChange={(e) => setBgColor(e.target.value)}
+                style={{ width: '80px', height: '40px', border: 'none', cursor: 'pointer' }}
+              />
+            </div>
 
-        <button type="submit" className="button">Save Branding</button>
-        <button type="button" onClick={handleResetToDefault} className="button" style={{ backgroundColor: '#6b7280' }}>Reset to Default</button>
+            <div>
+              <h4 style={{ color: 'white', marginTop: '1rem' }}>Navbar Theme</h4>
+              {renderThemeGrid(navbarImage, setNavbarImage)}
+              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Navbar Color</label>
+              <input
+                type="color"
+                value={navbarColor}
+                onChange={(e) => setNavbarColor(e.target.value)}
+                style={{ width: '80px', height: '40px', border: 'none', cursor: 'pointer' }}
+              />
+            </div>
 
-        {showReloadNotice && (
-          <p style={{ color: "crimson", fontSize: "0.875rem", marginTop: "0.5rem" }}>
-            Reload the page (F5) to see the updated branding.
-          </p>
-        )}
-      </form>
+            <div>
+              <h4 style={{ color: 'white', marginTop: '1rem' }}>Card Theme</h4>
+              {renderThemeGrid(cardImage, setCardImage)}
+              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Card Color</label>
+              <input
+                type="color"
+                value={cardColor}
+                onChange={(e) => setCardColor(e.target.value)}
+                style={{ width: '80px', height: '40px', border: 'none', cursor: 'pointer' }}
+              />
+            </div>
+
+            <button type="submit" className="button">Save Branding</button>
+            <button
+              type="button"
+              onClick={handleResetToDefault}
+              className="button"
+              style={{ backgroundColor: '#6b7280' }}
+            >
+              Reset to Default
+            </button>
+
+            {showReloadNotice && (
+              <p style={{ color: "crimson", fontSize: "0.875rem", marginTop: "0.5rem" }}>
+                Reload the page (F5) to see the updated branding.
+              </p>
+            )}
+          </form>
+        </>
+      )}
     </div>
   );
 }

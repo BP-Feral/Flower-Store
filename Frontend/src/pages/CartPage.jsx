@@ -18,7 +18,7 @@ function CartPage() {
               <img src={`http://localhost:5000/uploads/${item.image_url}`} alt={item.name} />
               <div className={styles.info}>
                 <h3>{item.name}</h3>
-                <p>${item.price} each</p>
+                <p>{item.price} RON each</p>
                 <input
                   type="number"
                   value={item.quantity}
@@ -29,7 +29,7 @@ function CartPage() {
               </div>
             </div>
           ))}
-          <h2>Total: ${total}</h2>
+          <h2>Total: {total} RON</h2>
           <button className={styles.checkoutBtn}>Proceed to Checkout</button>
         </>
       )}

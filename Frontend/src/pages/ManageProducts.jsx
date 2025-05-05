@@ -261,7 +261,7 @@ function ManageProducts() {
             <input type="text" name="name" placeholder="Product Name" value={newProduct.name} onChange={handleProductInputChange} className="input" />
             <textarea name="description" placeholder="Product Description" value={newProduct.description} onChange={handleProductInputChange} className="input" rows="3" />
             <input type="number" name="stock" placeholder="Stock Available" value={newProduct.stock} onChange={handleProductInputChange} className="input" />
-            <input type="number" name="price" placeholder="Price Per Item ($)" value={newProduct.price} onChange={handleProductInputChange} className="input" />
+            <input type="number" name="price" placeholder="Price Per Item (RON)" value={newProduct.price} onChange={handleProductInputChange} className="input" />
             <input type="file" accept="image/*" onChange={handleImageChange} className="input" />
 
             <div className="permissionsDisplay">

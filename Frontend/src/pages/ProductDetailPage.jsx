@@ -93,7 +93,7 @@ function ProductDetailPage() {
 
           <section className={styles.section}>
             <h3>Price & Stock</h3>
-            <p className={styles.price}><strong>Price:</strong> ${product.price}</p>
+            <p className={styles.price}><strong>Price:</strong> {product.price} RON</p>
             <p className={styles.stock}><strong>Stock:</strong> {product.stock}</p>
           </section>
 
