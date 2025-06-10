@@ -5,16 +5,16 @@ import CustomizationCard from "../components/CustomizationCard.jsx";
 function Settings() {
     const { user } = useContext(AuthContext);
   
-    if (!user) return <p style={{ color: "white" }}>You must be logged in.</p>;
+    if (!user) return <p style={{ color: "white" }}>Trebuie sa fi autentificat.</p>;
   
     return (
       <div className="pageWrapper">
-        <h1 className="heading">Settings</h1>
+        <h1 className="heading">Setari</h1>
         <p style={{ textAlign: "center", color: "#ccc", marginBottom: "2rem" }}>
-          Adjust your preferences or customize store behavior (if permitted).
+          Modifica preferintele sau schimba configurarile magazinului (necesita permisiuni).
         </p>
   
-        {user.permissions?.customize_store && <CustomizationCard />}
+        {user.permissions?.customizare_magazin && <CustomizationCard />}
 
       </div>
     );

@@ -45,7 +45,7 @@ function CustomizationCard() {
         if (data.navbar_image) setNavbarImage(data.navbar_image);
         if (data.card_image) setCardImage(data.card_image);
       })
-      .catch(() => showError("Failed to load store settings"));
+      .catch(() => showError("Nu s-au putut incarca preferintele temei."));
   }, []);
 
   useEffect(() => {
@@ -73,11 +73,11 @@ function CustomizationCard() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to save");
-      showSuccess("Branding updated successfully");
+      showSuccess("Preferintele au fost salvate.");
       setShowReloadNotice(true);
       document.title = storeTitle;
     } catch (err) {
-      showError("Error saving branding");
+      showError("Eroare la salvarea preferintelor.");
     }
   };
 
@@ -143,19 +143,19 @@ function CustomizationCard() {
         className="button"
         style={{ marginBottom: "1rem", backgroundColor: "#10b981" }}
       >
-        {isExpanded ? "Hide Customization" : "Show Customization"}
+        {isExpanded ? "Ascunde Customizarea" : "Afiseaza Customizarea"}
       </button>
 
       {isExpanded && (
         <>
-          <h2 className="heading">Store Customization</h2>
+          <h2 className="heading">Customizarea Magazinului</h2>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div>
-              <label htmlFor="storeTitle" style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>Store Title</label>
+              <label htmlFor="storeTitle" style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>Titlul Magazinului</label>
               <input
                 type="text"
                 id="storeTitle"
-                placeholder="Flower Store"
+                placeholder="Magazinul Florilor"
                 value={storeTitle}
                 onChange={(e) => setStoreTitle(e.target.value)}
                 className="input"
@@ -174,9 +174,9 @@ function CustomizationCard() {
             </div>
 
             <div>
-              <h4 style={{ color: 'white', marginTop: '1rem' }}>Background Theme</h4>
+              <h4 style={{ color: 'white', marginTop: '1rem' }}>Tema de fundal</h4>
               {renderThemeGrid(bgImage, setBgImage)}
-              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Background Color</label>
+              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Culoare de fundal</label>
               <input
                 type="color"
                 value={bgColor}
@@ -186,9 +186,9 @@ function CustomizationCard() {
             </div>
 
             <div>
-              <h4 style={{ color: 'white', marginTop: '1rem' }}>Navbar Theme</h4>
+              <h4 style={{ color: 'white', marginTop: '1rem' }}>Tema bara navigare</h4>
               {renderThemeGrid(navbarImage, setNavbarImage)}
-              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Navbar Color</label>
+              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Culoare bara navigare</label>
               <input
                 type="color"
                 value={navbarColor}
@@ -198,9 +198,9 @@ function CustomizationCard() {
             </div>
 
             <div>
-              <h4 style={{ color: 'white', marginTop: '1rem' }}>Card Theme</h4>
+              <h4 style={{ color: 'white', marginTop: '1rem' }}>Tema elemente in pagina</h4>
               {renderThemeGrid(cardImage, setCardImage)}
-              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Card Color</label>
+              <label style={{ display: 'block', marginTop: '0.5rem', color: 'white' }}>Culoare elemente in pagina</label>
               <input
                 type="color"
                 value={cardColor}
@@ -209,19 +209,19 @@ function CustomizationCard() {
               />
             </div>
 
-            <button type="submit" className="button">Save Branding</button>
+            <button type="submit" className="button">Salveaza Tema</button>
             <button
               type="button"
               onClick={handleResetToDefault}
               className="button"
               style={{ backgroundColor: '#6b7280' }}
             >
-              Reset to Default
+              Reseteaza la valorile initiale
             </button>
 
             {showReloadNotice && (
               <p style={{ color: "crimson", fontSize: "0.875rem", marginTop: "0.5rem" }}>
-                Reload the page (F5) to see the updated branding.
+                Reincarca pagina (F5) entru a vedea noile modificari.
               </p>
             )}
           </form>

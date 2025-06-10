@@ -56,7 +56,7 @@ const CameraFeed = () => {
           />
         </div>
       ) : (
-        <p>No camera selected or no camera available</p>
+        <p>Nu a fost selectata o camera, sau nu sunt valabile.</p>
       )}
 
     </div>

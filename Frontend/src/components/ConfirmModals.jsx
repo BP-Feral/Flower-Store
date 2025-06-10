@@ -4,7 +4,7 @@ function ConfirmModal({ message, onConfirm, onCancel }) {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h3 className={styles.title}>Confirmation</h3>
+        <h3 className={styles.title}>Confirma</h3>
         <p className={styles.message}>{message}</p>
         <div className={styles.buttonGroup}>
           <button onClick={onConfirm} className={styles.confirmButton}>Confirm</button>

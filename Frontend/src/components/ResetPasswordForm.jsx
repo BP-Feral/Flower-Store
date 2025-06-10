@@ -11,19 +11,19 @@ function ResetPasswordForm({
   }) {
   return (
     <div className="card">
-      <h3>Reset Password for {resetUser.username}</h3>
+      <h3>Schimba parola pentru {resetUser.username}</h3>
       <form onSubmit={onSubmit} className="createForm">
         <input
             type="password"
             ref={resetPasswordRef}
-            placeholder="New Password"
+            placeholder="Parola Noua"
             value={resetPassword}
             onChange={(e) => onChangePassword(e.target.value)}
             className="input"
         required
         />
-        <button type="submit" className="createButton">Save New Password</button>
-        <button type="button" onClick={onCancel} className="deleteButton">Cancel</button>
+        <button type="submit" className="createButton">Salveaza parola noua</button>
+        <button type="button" onClick={onCancel} className="deleteButton">Anuleaza</button>
       </form>
     </div>
   );

@@ -25,9 +25,9 @@ function ProtectedRoute({ children, requiredPermission }) {
 
   // Otherwise check general product permission
   const hasProductPermission =
-    user.permissions.add_product ||
-    user.permissions.edit_product ||
-    user.permissions.delete_product;
+    user.permissions.adauga_produs ||
+    user.permissions.modifica_produs ||
+    user.permissions.sterge_produs;
 
   if (hasProductPermission) {
     return children;

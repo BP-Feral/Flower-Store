@@ -35,7 +35,7 @@ function ProductDetailPage() {
       .then((res) => res.json())
       .then((data) => {
         if (data.message) {
-          showSuccess("Review added!");
+          showSuccess("Recenzie adaugata!");
           setProduct((prev) => ({
             ...prev,
             reviews: [
@@ -48,7 +48,7 @@ function ProductDetailPage() {
           setComment("");
         }
       })
-      .catch(() => alert("Failed to submit review"));
+      .catch(() => alert("Nu s-a putut adauga recenzia"));
   };
 
   const renderStars = (currentRating, setFn = null) => {
@@ -70,7 +70,7 @@ function ProductDetailPage() {
     });
   };
 
-  if (!product) return <p>Loading...</p>;
+  if (!product) return <p>Se incarca...</p>;
   if (product.error) return <p>{product.error}</p>;
 
   return (
@@ -98,7 +98,7 @@ function ProductDetailPage() {
           </section>
 
           <section className={styles.section}>
-            <h3>Specifications</h3>
+            <h3>Specificatii</h3>
             <ul className={styles.specs}>
               {product.specs.map((spec, index) => (
                 <li key={index}>
@@ -112,18 +112,18 @@ function ProductDetailPage() {
             className={styles.addToCartBtn}
             onClick={() => {
               addToCart(product);
-              showSuccess("Added to cart!");
+              showSuccess("Adaugat in cos!");
             }}
           >
-            Add to Cart
+            Adauga in cos
           </button>
         </div>
       </div>
 
       <div className={styles.reviewsSection}>
-        <h2>Reviews</h2>
+        <h2>Recenzii</h2>
         {product.reviews.length === 0 ? (
-          <p>No reviews yet.</p>
+          <p>Nu s-au gasit recenzii.</p>
         ) : (
           product.reviews.map((review, idx) => (
             <div key={idx} className={styles.reviewCard}>
@@ -136,11 +136,11 @@ function ProductDetailPage() {
         )}
 
         <div className={styles.reviewForm}>
-          <h3>Leave a Review</h3>
+          <h3>Lasa o recenzie</h3>
           <form onSubmit={handleReviewSubmit}>
             <input
               type="text"
-              placeholder="Your name"
+              placeholder="Numele"
               className={styles.inputBox}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -150,13 +150,13 @@ function ProductDetailPage() {
               {renderStars(rating, setRating)}
             </div>
             <textarea
-              placeholder="Your review"
+              placeholder="Detalii"
               value={comment}
               className={styles.inputBox}
               onChange={(e) => setComment(e.target.value)}
               required
             ></textarea>
-            <button type="submit">Submit Review</button>
+            <button type="submit">Trimite Recenzia</button>
           </form>
         </div>
       </div>

@@ -4,7 +4,7 @@ import "../styles/LogoutCardLayout.css";
 function LogoutCard({ onLogout }) {
   return (
     <div className="card">
-      <button onClick={onLogout} className="logoutButton">Logout</button>
+      <button onClick={onLogout} className="logoutButton">Deconectare</button>
     </div>
   );
 }

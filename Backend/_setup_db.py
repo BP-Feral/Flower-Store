@@ -30,16 +30,16 @@ VALUES (?, ?, ?, ?, ?)
     generate_password_hash("admin"),  # Default password
     admin_avatar,
     json.dumps({
-        "add_product": True,
-        "edit_product": True,
-        "delete_product": True,
-        "view_tags": True,
-        "create_tags": True,
-        "delete_tags": True,
-        "edit_tags": True,
-        "manage_staff": True,
-        "view_cameras": True,
-        "customize_store": True
+        "adauga_produs": True,
+        "modifica_produs": True,
+        "sterge_produs": True,
+        "citire_tag": True,
+        "adauga_tag": True,
+        "sterge_tag": True,
+        "modifica_tag": True,
+        "administreaza_personal": True,
+        "acces_camere": True,
+        "customizare_magazin": True
     }),
     True
 ))

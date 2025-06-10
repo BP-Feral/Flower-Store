@@ -13,10 +13,10 @@ function ManageProducts() {
   const rawPermissions = localStorage.getItem("permissions");
   const userPermissions = rawPermissions ? JSON.parse(rawPermissions) : {};
 
-  const canViewTags = userPermissions.view_tags || false;
-  const canCreateTags = userPermissions.create_tags || false;
-  const canDeleteTags = userPermissions.delete_tags || false;
-  const canAddProduct = userPermissions.add_product || false;
+  const canViewTags = userPermissions.citire_tag || false;
+  const canCreateTags = userPermissions.adauga_tag || false;
+  const canDeleteTags = userPermissions.sterge_tag || false;
+  const canAddProduct = userPermissions.adauga_produs || false;
 
   const [tags, setTags] = useState([]);
   const [products, setProducts] = useState([]);
@@ -56,10 +56,10 @@ function ManageProducts() {
       if (response.ok) {
         setTags(data);
       } else {
-        showError(data.error || "Failed to load tags.");
+        showError(data.error || "Nu s-au putut incarca categoriile.");
       }
     } catch (error) {
-      showError("Server error fetching tags.");
+      showError("Eroare de server la incarcarea categoriilor.");
     }
   };
 
@@ -70,10 +70,10 @@ function ManageProducts() {
       if (res.ok) {
         setProducts(data);
       } else {
-        showError(data.error || "Failed to fetch products.");
+        showError(data.error || "Nu s-au putut incarca produsele.");
       }
     } catch {
-      showError("Server error fetching products.");
+      showError("Eroare de server la incarcarea produselor.");
     }
   };
 
@@ -120,7 +120,7 @@ function ManageProducts() {
     e.preventDefault();
     const { name, description, stock, price } = newProduct;
     if (!name || !description || !price) {
-      showError("Please fill in all required fields.");
+      showError("Completeaza toate campurile obligatorii.");
       return;
     }
     try {
@@ -144,16 +144,16 @@ function ManageProducts() {
 
       const data = await response.json();
       if (response.ok) {
-        showSuccess(isEditing ? "Product updated!" : "Product created!");
+        showSuccess(isEditing ? "Produs actualizat!" : "Produs creat!");
         setNewProduct({ name: "", description: "", stock: "", price: "", image: null, assignedTags: [], specs: [] });
         setIsEditing(false);
         setEditProductId(null);
         fetchProducts();
       } else {
-        showError(data.error || "Failed to submit product.");
+        showError(data.error || "Nu s-a putut inregistra produsul.");
       }
     } catch {
-      showError("Server error while submitting product.");
+      showError("Eroare de server la inregistrarea produsului.");
     }
   };
 
@@ -189,13 +189,13 @@ function ManageProducts() {
       });
       const data = await res.json();
       if (res.ok) {
-        showSuccess("Product deleted.");
+        showSuccess("Produs sters.");
         fetchProducts();
       } else {
-        showError(data.error || "Failed to delete product.");
+        showError(data.error || "Nu s-a putut sterge produsul.");
       }
     } catch {
-      showError("Server error while deleting product.");
+      showError("Eroare de server la stergerea produsului.");
     } finally {
       setShowConfirmDelete(false);
       setProductToDelete(null);
@@ -210,13 +210,13 @@ function ManageProducts() {
       });
       const data = await res.json();
       if (res.ok) {
-        showSuccess("Tag deleted.");
+        showSuccess("Categorie stearsa.");
         fetchTags();
       } else {
-        showError(data.error || "Failed to delete tag.");
+        showError(data.error || "Nu s-a putut sterge categoria.");
       }
     } catch {
-      showError("Server error while deleting tag.");
+      showError("Eroare de server la stergerea categoriei.");
     } finally {
       setShowConfirmDelete(false);
       setTagToDelete(null);
@@ -225,7 +225,7 @@ function ManageProducts() {
 
   const handleCreateTag = async () => {
     if (!newTag.trim()) {
-      showError("Please enter a tag name.");
+      showError("Introdu un nume pentru categorie.");
       return;
     }
     try {
@@ -241,27 +241,27 @@ function ManageProducts() {
       if (response.ok) {
         setNewTag("");
         fetchTags();
-        showSuccess("Tag created successfully!");
+        showSuccess("Categorie creata cu succes!");
       } else {
-        showError(data.error || "Failed to create tag.");
+        showError(data.error || "Nu s-a putut crea categoria.");
       }
     } catch (error) {
       console.error("Create tag error:", error);
-      showError("Server error while creating tag.");
+      showError("Eroare de server la crearea categoriei.");
     }
   };
   return (
     <div className="pageWrapper">
-      <h2 className="heading">Manage Products</h2>
+      <h2 className="heading">Editeaza Produsele</h2>
 
       {canAddProduct && (
         <div className="card">
-          <h3 className="heading">{isEditing ? "Edit Product" : "Create New Product"}</h3>
+          <h3 className="heading">{isEditing ? "Modifica Produsul" : "Creaza Produs"}</h3>
           <form onSubmit={handleSubmitProduct} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <input type="text" name="name" placeholder="Product Name" value={newProduct.name} onChange={handleProductInputChange} className="input" />
-            <textarea name="description" placeholder="Product Description" value={newProduct.description} onChange={handleProductInputChange} className="input" rows="3" />
-            <input type="number" name="stock" placeholder="Stock Available" value={newProduct.stock} onChange={handleProductInputChange} className="input" />
-            <input type="number" name="price" placeholder="Price Per Item (RON)" value={newProduct.price} onChange={handleProductInputChange} className="input" />
+            <input type="text" name="name" placeholder="Nume Produs" value={newProduct.name} onChange={handleProductInputChange} className="input" />
+            <textarea name="description" placeholder="Descriere Produs" value={newProduct.description} onChange={handleProductInputChange} className="input" rows="3" />
+            <input type="number" name="stock" placeholder="Cantitate valabila" value={newProduct.stock} onChange={handleProductInputChange} className="input" />
+            <input type="number" name="price" placeholder="Pret pe bucata (RON)" value={newProduct.price} onChange={handleProductInputChange} className="input" />
             <input type="file" accept="image/*" onChange={handleImageChange} className="input" />
 
             <div className="permissionsDisplay">
@@ -274,48 +274,48 @@ function ManageProducts() {
             </div>
 
             <div>
-              <h4>Product Specifications</h4>
+              <h4>Specificatii Produs (optional)</h4>
               {newProduct.specs.map((spec, index) => (
                 <div key={index} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>
                   <input
                     type="text"
-                    placeholder="Spec Name"
+                    placeholder="specificatie (ex culoare)"
                     value={spec.key}
                     onChange={(e) => handleSpecChange(index, "key", e.target.value)}
                     className="input"
                   />
                   <input
                     type="text"
-                    placeholder="Spec Value"
+                    placeholder="valoare"
                     value={spec.value}
                     onChange={(e) => handleSpecChange(index, "value", e.target.value)}
                     className="input"
                   />
-                  <button type="button" onClick={() => removeSpecField(index)} className="deleteButton">X</button>
+                  <button type="button" onClick={() => removeSpecField(index)} className="deleteButton">Anuleaza</button>
                 </div>
               ))}
-              <button type="button" onClick={addSpecField} className="createButton">+ Add Spec</button>
+              <button type="button" onClick={addSpecField} className="createButton">+ Adauga Specificate</button>
             </div>
 
             <button type="submit" className="createButton">
-              {isEditing ? "Update Product" : "Create Product"}
+              {isEditing ? "Modifica Produs" : "Creaza Produs"}
             </button>
           </form>
         </div>
       )}
 
 <div className="card">
-        <h3 className="heading">Existing Products</h3>
+        <h3 className="heading">Produse Inregisrate</h3>
         {products.length === 0 ? (
-          <p>No products found.</p>
+          <p>Nici un produs gasit.</p>
         ) : (
           <table className="userTable">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th>Nume</th>
+                <th>Cantitate</th>
+                <th>Pret</th>
+                <th>Actiuni</th>
               </tr>
             </thead>
             <tbody>
@@ -323,10 +323,10 @@ function ManageProducts() {
                 <tr key={p.id}>
                   <td>{p.name}</td>
                   <td>{p.stock}</td>
-                  <td>${p.price}</td>
+                  <td>{p.price} RON</td>
                   <td>
-                    <button onClick={() => startEditProduct(p)} className="editButton">Edit</button>
-                    <button onClick={() => confirmDeleteProduct(p.id)} className="deleteButton">Delete</button>
+                    <button onClick={() => startEditProduct(p)} className="editButton">Modifica</button>
+                    <button onClick={() => confirmDeleteProduct(p.id)} className="deleteButton">Sterge</button>
                   </td>
                 </tr>
               ))}
@@ -337,21 +337,21 @@ function ManageProducts() {
 
       {canViewTags && (
         <div className="card">
-          <h3 className="heading">Tags / Categories</h3>
+          <h3 className="heading">Categorie / Filtre</h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }}>
             {tags.map((tag) => (
               <div key={tag.id} className="permissionItem">
                 {tag.name}
                 {canDeleteTags && (
-                  <button onClick={() => { setTagToDelete(tag.id); setShowConfirmDelete(true); }} className="deleteButton">Delete</button>
+                  <button onClick={() => { setTagToDelete(tag.id); setShowConfirmDelete(true); }} className="deleteButton">Sterge</button>
                 )}
               </div>
             ))}
           </div>
           {canCreateTags && (
             <form onSubmit={(e) => { e.preventDefault(); handleCreateTag(); }} style={{ marginTop: "1rem" }}>
-              <input type="text" placeholder="New Tag Name" value={newTag} onChange={(e) => setNewTag(e.target.value)} className="input" />
-              <button type="submit" className="createButton">Create Tag</button>
+              <input type="text" placeholder="Nume Categorie Noua" value={newTag} onChange={(e) => setNewTag(e.target.value)} className="input" />
+              <button type="submit" className="createButton">Creaza Categorie</button>
             </form>
           )}
         </div>
@@ -361,8 +361,8 @@ function ManageProducts() {
         <ConfirmModal
           message={
             productToDelete
-              ? `Are you sure you want to delete the product "${products.find(p => p.id === productToDelete)?.name || "this"}"?`
-              : `Are you sure you want to delete this tag?`
+              ? `Chiar vrei sa stergi acest produs: "${products.find(p => p.id === productToDelete)?.name || "nedefinit"}"?`
+              : `Vrei sa stergi aceasta categorie?`
           }
           onConfirm={productToDelete ? handleConfirmDeleteProduct : handleConfirmDeleteTag}
           onCancel={() => {

@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_cors import CORS
-from utils import get_db_connection
 
 from bp_auth import bp_auth
 from bp_user_routes import bp_user

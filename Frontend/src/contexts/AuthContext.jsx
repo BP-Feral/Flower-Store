@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   if (loading) {
-    return <div style={{ textAlign: "center", marginTop: "2rem", color: "white" }}>Loading...</div>;
+    return <div style={{ textAlign: "center", marginTop: "2rem", color: "white" }}>Se incarca...</div>;
   }
 
   return (

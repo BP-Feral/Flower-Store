@@ -14,38 +14,38 @@ function CreateUserForm({
 }) {
   return (
     <form onSubmit={onSubmit}>
-      <h3>Add New Staff Account</h3>
+      <h3>Adauga cont nou</h3>
       <input
         type="text"
         ref={createUserRef}
-        placeholder="Username"
+        placeholder="Nume Utilizator"
         value={newUsername}
         onChange={(e) => onChangeUsername(e.target.value)}
         className="input"
       />
       <input
         type="password"
-        placeholder="Password"
+        placeholder="Parola"
         value={newUserPassword}
         onChange={(e) => onChangePassword(e.target.value)}
         className="input"
       />
       <div className="permissionsDisplay">
         {[
-          "add_product",
-          "edit_product",
-          "delete_product",
-          "view_tags",
-          "create_tags",
-          "delete_tags",
-          "edit_tags",
-          "view_cameras",
-          "customize_store"
+          "adauga_produs",
+          "modifica_produs",
+          "sterge_produs",
+          "citire_tag",
+          "adauga_tag",
+          "sterge_tag",
+          "modifica_tag",
+          "acces_camere",
+          "customizare_magazin"
         ].map((perm) => (
           <label
               key={perm}
               className={
-                perm === "view_cameras" ? "permissionItem manageUsersPermission" : "permissionItem"
+                perm === "acces_camere" ? "permissionItem administreaza_personal" : "permissionItem"
               }
             >
             <input
@@ -58,8 +58,8 @@ function CreateUserForm({
           </label>
         ))}
       </div>
-      <button type="submit" className="createButton">Save User</button>
-      <button type="button" onClick={onCancel} className="deleteButton">Cancel</button>
+      <button type="submit" className="createButton">Salveaza</button>
+      <button type="button" onClick={onCancel} className="deleteButton">Anuleaza</button>
     </form>
   );
 }

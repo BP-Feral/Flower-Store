@@ -17,14 +17,14 @@ function UsersTable({
 }) {
   return (
     <div className="card">
-      <h2 className="heading">Staff Management</h2>
+      <h2 className="heading">Atribuiri Personal</h2>
       <table className="table">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Username</th>
-            <th>Permissions</th>
-            <th>Actions</th>
+            <th>Nume Utilizator</th>
+            <th>Permisiuni</th>
+            <th>Actiuni</th>
           </tr>
         </thead>
         <tbody>
@@ -50,9 +50,9 @@ function UsersTable({
                       <div>
                         {user.username}
                         {user.username === "admin" ? (
-                          <span className="adminBadge">Admin</span>
+                          <span className="adminBadge">Administrator</span>
                         ) : (
-                          <span className="staffBadge">Staff</span>
+                          <span className="staffBadge">Personal</span>
                         )}
                       </div>
                     </div>
@@ -61,15 +61,15 @@ function UsersTable({
                 <td>
                   <div className="permissionsDisplay">
                     {[
-                      "add_product",
-                      "edit_product",
-                      "delete_product",
-                      "view_tags",
-                      "create_tags",
-                      "delete_tags",
-                      "edit_tags",
-                      "customize_store",
-                      ...(user.username === "admin" ? ["manage_staff", "view_cameras"] : ["view_cameras"]),
+                      "adauga_produs",
+                      "modifica_produs",
+                      "sterge_produs",
+                      "citire_tag",
+                      "adauga_tag",
+                      "sterge_tag",
+                      "modifica_tag",
+                      "customizare_magazin",
+                      ...(user.username === "admin" ? ["administreaza_personal", "acces_camere"] : ["acces_camere"]),
                     ].map((permKey) => {
                       const perms = editingUserId === user.id
                         ? editPermissions
@@ -78,7 +78,7 @@ function UsersTable({
                       const value = perms[permKey] || false;
 
                       const permissionLabelClass =
-                      permKey === "manage_staff" || permKey === "view_cameras"
+                      permKey === "administreaza_personal" || permKey === "acces_camere"
                         ? "permissionItem manageUsersPermission"
                         : "permissionItem";
                         
@@ -103,14 +103,14 @@ function UsersTable({
                     <div className="actionButtons">
                       {editingUserId === user.id ? (
                         <>
-                          <button onClick={() => onSaveEdit(user.id)} className="createButton">Save</button>
-                          <button onClick={() => setEditingUserId(null)} className="deleteButton">Cancel</button>
+                          <button onClick={() => onSaveEdit(user.id)} className="createButton">Salveaza</button>
+                          <button onClick={() => setEditingUserId(null)} className="deleteButton">Anuleaza</button>
                         </>
                       ) : (
                         <>
-                          <button onClick={() => onEdit(user)} className="editButton">Edit</button>
-                          <button onClick={() => onResetPassword(user)} className="resetButton">Reset Password</button>
-                          <button onClick={() => onDelete(user.id)} className="deleteButton">Delete</button>
+                          <button onClick={() => onEdit(user)} className="editButton">Modifica</button>
+                          <button onClick={() => onResetPassword(user)} className="resetButton">Schimba Parola</button>
+                          <button onClick={() => onDelete(user.id)} className="deleteButton">Sterge</button>
                         </>
                       )}
                     </div>

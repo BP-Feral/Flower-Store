@@ -10,7 +10,7 @@ import { User, Settings, PackagePlus, Shield,
 import { useEffect, useRef } from "react";
 
 function Navbar() {
-  const [storeTitle, setStoreTitle] = useState("Flower Store");
+  const [storeTitle, setStoreTitle] = useState("Magazin");
 
   useEffect(() => {
     fetch("http://localhost:5000/settings")
@@ -54,9 +54,9 @@ function Navbar() {
   </div>
 
   <div className={styles.center}>
-    <Link to="/">Home</Link>
-    <Link to="/store">Store</Link>
-    <Link to="/about">About</Link>
+    <Link to="/">Acasa</Link>
+    <Link to="/store">Magazin</Link>
+    <Link to="/about">Despre Proiect</Link>
   </div>
 
   <div className={styles.right}>
@@ -73,25 +73,25 @@ function Navbar() {
         <img src={user.profile_picture} alt=" " className={styles.avatar} />
         {showDropdown && (
           <div ref={dropdownRef} className={styles.dropdown}>
-                  <Link to="/profile"><User size={16} /> Profile</Link>
-                  <Link to="/settings"><Settings size={16} /> Settings</Link>
+                  <Link to="/profile"><User size={16} /> Profil</Link>
+                  <Link to="/settings"><Settings size={16} /> Setari</Link>
 
-                  {(user.permissions?.add_product || user.permissions?.edit_product || user.permissions?.delete_product) && (
-    <Link to="/manage-products"><PackagePlus size={16} /> Manage Products</Link>
+                  {(user.permissions?.adauga_produs || user.permissions?.modifica_produs || user.permissions?.sterge_produs) && (
+    <Link to="/manage-products"><PackagePlus size={16} />Editeaza Produse</Link>
   )}
 
   {user.username === "admin" && (
-    <Link to="/admin"><Shield size={16} /> Admin Panel</Link>
+    <Link to="/admin"><Shield size={16} />Panou Administrator</Link>
   )}
 
-  {user.permissions?.view_cameras && (
-    <Link to="/cameras"><Video size={16} /> Camera Feed</Link>
+  {user.permissions?.acces_camere && (
+    <Link to="/cameras"><Video size={16} />Camere Video</Link>
   )}
                 
-                <Link to="/cart"><CartIcon size={16} /> Cart</Link>
+                <Link to="/cart"><CartIcon size={16} />Cos Cumparaturi</Link>
 
 <button onClick={handleLogout} className={styles.dropdownButton}>
-  <LogOut size={16} /> Logout
+  <LogOut size={16} /> Deconectare
                 </button>
               </div>
             )}
@@ -99,7 +99,7 @@ function Navbar() {
           </div>
         ) : (
           <button onClick={() => navigate("/login")} className={styles.loginButton}>
-            Login
+            Autentificare
           </button>
         )}
       </div>

@@ -8,20 +8,20 @@ function CreateUserSection({ fetchUsers }) {
   const [newUsername, setNewUsername] = useState("");
   const [newUserPassword, setNewUserPassword] = useState("");
   const [permissions, setPermissions] = useState({
-    add_product: false,
-    edit_product: false,
-    delete_product: false,
-    view_tags: false,
-    create_tags: false,
-    delete_tags: false,
-    edit_tags: false,
-    view_cameras: false,
+    adauga_produs: false,
+    modifica_produs: false,
+    sterge_produs: false,
+    citire_tag: false,
+    adauga_tag: false,
+    sterge_tag: false,
+    modifica_tag: false,
+    acces_camere: false,
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newUsername.trim() || !newUserPassword.trim()) {
-      showError("Username and Password are required.");
+      showError("Nume Utilizator si Parola sunt necesare!");
       return;
     }
     try {
@@ -40,24 +40,24 @@ function CreateUserSection({ fetchUsers }) {
         setNewUsername("");
         setNewUserPassword("");
         setPermissions({
-            add_product: false,
-            edit_product: false,
-            delete_product: false,
-            view_tags: false,
-            create_tags: false,
-            delete_tags: false,
-            edit_tags: false,
-            view_cameras: false,
-            customize_store: false,
+          adauga_produs: false,
+          modifica_produs: false,
+          sterge_produs: false,
+          citire_tag: false,
+          adauga_tag: false,
+          sterge_tag: false,
+          modifica_tag: false,
+          acces_camere: false,
+          customizare_magazin: false,
           });
         setShowCreateForm(false);
         fetchUsers();
       } else {
-        showError(data.error || "Failed to create user.");
+        showError(data.error || "Nu s-a putut crea utilizator!");
       }
     } catch (error) {
       console.error("Create error:", error);
-      showError("Error creating user.");
+      showError("Eroare la crearea utilizatorului.");
     }
   };
 
@@ -87,7 +87,7 @@ function CreateUserSection({ fetchUsers }) {
       }}
       className="createButton"
     >
-      Add New Staff Account
+      Adauga cont personal nou
     </button>
   );
 }

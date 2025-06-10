@@ -40,7 +40,7 @@ function App() {
           <Route
             path="/cameras"
             element={
-              <ProtectedRoute requiredPermission="view_cameras">
+              <ProtectedRoute requiredPermission="acces_camere">
                 <CameraFeed />
               </ProtectedRoute>
             }
@@ -56,7 +56,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute requiredPermission="manage_users">
+              <ProtectedRoute requiredPermission="administreaza_personal">
                 <AdminPanel />
               </ProtectedRoute>
             }

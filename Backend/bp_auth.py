@@ -36,7 +36,7 @@ def login():
             "profile_picture": request.host_url.rstrip('/') + '/' + user["profile_picture"]
         })
     else:
-        return jsonify({"error": "Invalid username or password"}), 401
+        return jsonify({"error": "Nume Utilizator sau Parola gresita!"}), 401
 
 @bp_auth.route("/validate-token", methods=["GET"])
 def validate_token():

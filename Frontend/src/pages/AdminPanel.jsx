@@ -41,7 +41,7 @@ function AdminPanel() {
         },
       });
       if (response.status === 401 || response.status === 403) {
-        showError("Session expired. Please login again.");
+        showError("Sesiunea a expirat. Te rugam sa te reconectezi");
         localStorage.clear();
         setUser(null);
         navigate("/login");
@@ -53,7 +53,7 @@ function AdminPanel() {
       setIsLoading(false);
     } catch (error) {
       console.error("Failed to fetch users:", error);
-      showError("Failed to load users!");
+      showError("Eroare la incarcarea utilizatorilor!");
       setUsers([]);
       setIsLoading(false);
     }
@@ -66,7 +66,7 @@ function AdminPanel() {
   return (
     <div className="pageWrapper">
       <h2 className="heading">Admin Panel</h2>
-      {user.permissions.manage_staff && (
+      {user.permissions.administreaza_personal && (
         <>
           <EditUserSection
             users={users}
@@ -82,12 +82,12 @@ function AdminPanel() {
         </>
       )}
 
-      {user.permissions.customize_store && (
+      {user.permissions.customizare_magazin && (
         <>
           <CustomizationCard />
         </>
       )}
-      {user.permissions.manage_staff && <CameraSettingsSection />}
+      {user.permissions.administreaza_personal && <CameraSettingsSection />}
       <LogoutCard
         onLogout={() => {
           localStorage.clear();

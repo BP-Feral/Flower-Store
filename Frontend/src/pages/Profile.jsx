@@ -17,7 +17,7 @@ function Profile() {
 
   return (
     <div className="pageWrapper">
-      <h2 className="heading">My Profile</h2>
+      <h2 className="heading">Profilul meu</h2>
       <ProfileCard />
       <LogoutCard
         onLogout={() => {

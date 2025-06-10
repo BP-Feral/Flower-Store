@@ -8,9 +8,9 @@ function CartPage() {
 
   return (
     <div className={styles.cartWrapper}>
-      <h1>Your Cart</h1>
+      <h1>Cosul tau</h1>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p>Cosul tau este gol.</p>
       ) : (
         <>
           {cartItems.map(item => (
@@ -18,19 +18,19 @@ function CartPage() {
               <img src={`http://localhost:5000/uploads/${item.image_url}`} alt={item.name} />
               <div className={styles.info}>
                 <h3>{item.name}</h3>
-                <p>{item.price} RON each</p>
+                <p>{item.price} RON bucata</p>
                 <input
                   type="number"
                   value={item.quantity}
                   min="1"
                   onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
                 />
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                <button onClick={() => removeFromCart(item.id)}>Elimina</button>
               </div>
             </div>
           ))}
           <h2>Total: {total} RON</h2>
-          <button className={styles.checkoutBtn}>Proceed to Checkout</button>
+          <button className={styles.checkoutBtn}>Continua la plata</button>
         </>
       )}
     </div>

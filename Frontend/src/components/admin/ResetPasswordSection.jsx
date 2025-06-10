@@ -24,16 +24,16 @@ function ResetPasswordSection({ fetchUsers, resetUser, setResetUser }) {
       });
       const data = await response.json();
       if (response.ok) {
-        showSuccess("Password reset successfully!");
+        showSuccess("Parola a fost schimbata cu succes!");
         setResetUser(null);
         setResetPassword("");
         fetchUsers();
       } else {
-        showError(data.error || "Failed to reset password.");
+        showError(data.error || "Nu s-a putut schimba parola");
       }
     } catch (error) {
       console.error("Reset error:", error);
-      showError("Error resetting password.");
+      showError("Eroare la schimbarea parolei");
     }
   };
 

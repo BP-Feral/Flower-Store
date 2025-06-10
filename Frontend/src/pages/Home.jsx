@@ -1,9 +1,9 @@
 function Home() {
     return (
       <div className="pageWrapper">
-        <h1 className="heading">Welcome to the Flower Store 🌸</h1>
+        <h1 className="heading">Bun venit la magazinul de flori! 🌸</h1>
         <p style={{ textAlign: "center", maxWidth: "600px", margin: "1rem auto", color: "#ccc" }}>
-          Discover beautiful flowers, perfect for any occasion. Browse our store, manage your favorites, and enjoy a seamless experience whether you're a guest or logged in.
+          Descopera flori frumoase, perfecte pentru orice ocazie. Cauta in magazinul nostru, si beneficiaza de o experienta placuta si neintrerupta, chiar daca nu ai un cont!
         </p>
       </div>
     );

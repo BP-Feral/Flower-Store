@@ -14,12 +14,12 @@ function Login() {
     e.preventDefault();
   
     if (!username.trim()) {
-      showError("Username is required.");
+      showError("Introdu un nume!");
       return;
     }
   
     if (!password.trim()) {
-      showError("Password is required.");
+      showError("Introdu o parola!");
       return;
     }
   
@@ -46,22 +46,22 @@ function Login() {
         setUser({ username: data.username, permissions: data.permissions });
   
         if (data.force_password_change) {
-          sessionStorage.setItem("postReloadToast", "First login detected! Please set a strong new password.");
+          sessionStorage.setItem("postReloadToast", "Te-ai autentificat pentru prima data! Te rugam sa alegi o parola noua");
           window.location.href = "/change-password";
         } else if (data.username === "admin") {
-          sessionStorage.setItem("postReloadToast", "Welcome Admin!");
+          sessionStorage.setItem("postReloadToast", "Bine ai revenit administrator!");
           window.location.href = "/admin";
         } else {
-          sessionStorage.setItem("postReloadToast", "Login successful!");
+          sessionStorage.setItem("postReloadToast", "Autentificat cu succes");
           window.location.href = "/";
         }
 
       } else {
-        showError(data.error || "Login failed. Please check your credentials.");
+        showError(data.error || "Autentificare esuata. Te rugam sa reintroduci datele.");
       }
     } catch (error) {
       console.error("Login error:", error);
-      showError("Login failed due to server error.");
+      showError("Autentificare esuata datorita serverului.");
     }
   };
   
@@ -69,24 +69,24 @@ function Login() {
   return (
     <div className="loginWrapper">
       <div className="loginCard">
-        <h2 className="heading">Login</h2>
+        <h2 className="heading">Autentificare</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Nume Utilizator"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="loginInput"
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Parola"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="loginInput"
           />
           <button type="submit" className="button">
-            Login
+            Autentificare
           </button>
         </form>
       </div>

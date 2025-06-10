@@ -56,42 +56,42 @@ function CameraSettingsSection() {
         className="button"
         style={{ marginBottom: "1rem", backgroundColor: "#10b981" }}
       >
-        {isExpanded ? "Hide Camera Settings" : "Show Camera Settings"}
+        {isExpanded ? "Ascunde Setarile de Camera" : "Afiseaza Setarile de Camera"}
       </button>
 
       {isExpanded && (
         <>
-          <h3 className="heading">Camera Management</h3>
+          <h3 className="heading">Administrare Camere</h3>
 
           <label className="toggle">
             <input type="checkbox" checked={enabled} onChange={toggleFeature} />
-            Enable Cameras
+            Activeaza Camerele
           </label>
 
           {enabled && (
             <>
-              <h4>Add New Camera</h4>
+              <h4>Adauga o camera</h4>
               <input
                 type="text"
-                placeholder="Camera Name"
+                placeholder="Nume Camera"
                 value={newCamera.name}
                 onChange={e => setNewCamera({ ...newCamera, name: e.target.value })}
                 className="input"
               />
               <input
                 type="password"
-                placeholder="RTSP URL"
+                placeholder="URL RTSP"
                 value={newCamera.rtsp_url}
                 onChange={e => setNewCamera({ ...newCamera, rtsp_url: e.target.value })}
                 className="input"
               />
-              <button onClick={addCamera} className="createButton">Add Camera</button>
+              <button onClick={addCamera} className="createButton">Adauga Camera</button>
 
-              <h4>Existing Cameras</h4>
+              <h4>Camere Inregistrate</h4>
               {cameras.map(cam => (
                 <div key={cam.id} className="cameraItem">
                   <strong style={{ marginRight: '1rem' }}>{cam.name}</strong>
-                  <button onClick={() => deleteCamera(cam.id)} className="deleteButton">Delete</button>
+                  <button onClick={() => deleteCamera(cam.id)} className="deleteButton">Elimina</button>
                 </div>
               ))}
             </>
