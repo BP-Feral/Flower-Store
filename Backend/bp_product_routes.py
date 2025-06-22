@@ -89,7 +89,7 @@ def get_product_by_id(product_id):
         return jsonify({"error": "Server error"}), 500
 
 # ------------------------
-# POST create new product
+# Create new product
 # ------------------------
 @bp_product.route("/products", methods=["POST"])
 def create_product():

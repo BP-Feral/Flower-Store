@@ -53,7 +53,7 @@ def create_user():
             (username, password_hash, avatar_path, permissions),
         )
         conn.commit()
-        return jsonify({"message": "User created successfully."})
+        return jsonify({"message": "Utilizator creat cu success!"})
     except IntegrityError as e:
         conn.rollback()
         if "UNIQUE constraint" in str(e):
@@ -86,7 +86,7 @@ def update_user(user_id):
     conn.commit()
     conn.close()
 
-    return jsonify({"message": "User updated successfully"})
+    return jsonify({"message": "Utilizator actualizat"})
 
 @bp_user.route("/reset-password/<int:user_id>", methods=['PUT'])
 def reset_password(user_id):
@@ -102,7 +102,7 @@ def reset_password(user_id):
     conn.commit()
     conn.close()
 
-    return jsonify({"message": "Password reset successfully!"})
+    return jsonify({"message": "Parola schimbata!"})
 
 @bp_user.route("/delete-user/<int:user_id>", methods=['DELETE'])
 def delete_user(user_id):
@@ -117,7 +117,7 @@ def delete_user(user_id):
     conn.commit()
     conn.close()
 
-    return jsonify({"message": "User deleted successfully"})
+    return jsonify({"message": "Utilizator sters cu success!"})
 
 @bp_user.route("/change-password", methods=["POST"])
 def change_password():
@@ -137,4 +137,4 @@ def change_password():
     conn.commit()
     conn.close()
 
-    return jsonify({"message": "Password changed successfully"})
+    return jsonify({"message": "Parola schimbata"})

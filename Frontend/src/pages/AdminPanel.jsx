@@ -65,7 +65,7 @@ function AdminPanel() {
 
   return (
     <div className="pageWrapper">
-      <h2 className="heading">Admin Panel</h2>
+      <h2 className="heading">Panou Administrare</h2>
       {user.permissions.administreaza_personal && (
         <>
           <EditUserSection
